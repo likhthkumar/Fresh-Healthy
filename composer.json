@@ -1,0 +1,8 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.10",
+        "dompdf/dompdf": "^3.1",
+        "twilio/sdk": "^8.6",
+        "razorpay/razorpay": "~2.0"
+    }
+}

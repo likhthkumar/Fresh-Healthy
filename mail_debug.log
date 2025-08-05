@@ -1,0 +1,426 @@
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-761b06158acsm2567212b3a.109 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<freshhealthy999@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-761b06158acsm2567212b3a.109 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<lbille@gitam.in>
+
+SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-761b06158acsm2567212b3a.109 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-761b06158acsm2567212b3a.109 - gsmtp
+
+CLIENT -> SERVER: Date: Fri, 25 Jul 2025 06:33:10 +0530
+
+CLIENT -> SERVER: To: likhith <lbille@gitam.in>
+
+CLIENT -> SERVER: From: Fresh & Healthy <freshhealthy999@gmail.com>
+
+CLIENT -> SERVER: Subject: Your Order Has Been Confirmed!
+
+CLIENT -> SERVER: Message-ID: <vkE47j8aIBN0AtQrK4rFvtFgZfzpxPlTayyBQXsbrmA@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h2>Thank you for your order!</h2><p>Your order has been confirmed. Here are your order details:</p><p><strong>Order ID:</strong> 67</p><table border="1" cellpadding="6" cellspacing="0" width="100%"><tr><th>Product</th><th>Qty</th><th>Price</th></tr><tr><td>Pomegranate Juice (1L)</td><td>1</td><td>150</td></tr></table><p><strong>Total Amount:</strong> ₹190.00</p><p><strong>Delivery Address:</strong><br>b likhith kumar<br />
+
+CLIENT -> SERVER: Talamarla(V), Kothacheruvu(M), Sri Sathya Sai(D)., Ananthapur, Andhra Pradesh – 515133<br />
+
+CLIENT -> SERVER: Phone: 9182821174</p><p>If you have any questions, reply to this email.</p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1753405395 d2e1a72fcca58-761b06158acsm2567212b3a.109 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-761b06158acsm2567212b3a.109 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23fa491b955sm24429995ad.212 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<freshhealthy999@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-23fa491b955sm24429995ad.212 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<lbille@gitam.in>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-23fa491b955sm24429995ad.212 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-23fa491b955sm24429995ad.212 - gsmtp
+
+CLIENT -> SERVER: Date: Fri, 25 Jul 2025 06:35:42 +0530
+
+CLIENT -> SERVER: To: likhith <lbille@gitam.in>
+
+CLIENT -> SERVER: From: Fresh & Healthy <freshhealthy999@gmail.com>
+
+CLIENT -> SERVER: Subject: Your Order Has Been Confirmed!
+
+CLIENT -> SERVER: Message-ID: <kIeGsPJCIlBsmyiEnS49sJPzrroF4Uv1pmDFLTyyk@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h2>Thank you for your order!</h2><p>Your order has been confirmed. Here are your order details:</p><p><strong>Order ID:</strong> 68</p><table border="1" cellpadding="6" cellspacing="0" width="100%"><tr><th>Product</th><th>Qty</th><th>Price</th></tr><tr><td>Pomegranate Juice (1L)</td><td>1</td><td>150</td></tr></table><p><strong>Total Amount:</strong> ₹190.00</p><p><strong>Delivery Address:</strong><br>b likhith kumar<br />
+
+CLIENT -> SERVER: Talamarla(V), Kothacheruvu(M), Sri Sathya Sai(D)., Ananthapur, Andhra Pradesh – 515133<br />
+
+CLIENT -> SERVER: Phone: 9182821174</p><p>If you have any questions, reply to this email.</p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1753405549 d9443c01a7336-23fa491b955sm24429995ad.212 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-23fa491b955sm24429995ad.212 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-761b0643035sm2599317b3a.136 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<freshhealthy999@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-761b0643035sm2599317b3a.136 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<lbille@gitam.in>
+
+SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-761b0643035sm2599317b3a.136 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-761b0643035sm2599317b3a.136 - gsmtp
+
+CLIENT -> SERVER: Date: Fri, 25 Jul 2025 06:39:20 +0530
+
+CLIENT -> SERVER: To: likhith <lbille@gitam.in>
+
+CLIENT -> SERVER: From: Fresh & Healthy <freshhealthy999@gmail.com>
+
+CLIENT -> SERVER: Subject: Your Order Has Been Confirmed!
+
+CLIENT -> SERVER: Message-ID: <rv3Pvfq9QJU3YbjWbJXpvsRxIWi5T7B6eeOJs3cTtk@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h2>Thank you for your order!</h2><p>Your order has been confirmed. Here are your order details:</p><p><strong>Order ID:</strong> 69</p><table border="1" cellpadding="6" cellspacing="0" width="100%"><tr><th>Product</th><th>Qty</th><th>Price</th></tr><tr><td>Pomegranate Juice (1L)</td><td>3</td><td>150</td></tr></table><p><strong>Total Amount:</strong> ₹490.00</p><p><strong>Delivery Address:</strong><br>b likhith kumar<br />
+
+CLIENT -> SERVER: Talamarla(V), Kothacheruvu(M), Sri Sathya Sai(D)., Ananthapur, Andhra Pradesh – 515133<br />
+
+CLIENT -> SERVER: Phone: 9182821174</p><p>If you have any questions, reply to this email.</p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1753405764 d2e1a72fcca58-761b0643035sm2599317b3a.136 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-761b0643035sm2599317b3a.136 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d9443c01a7336-23fa475fc06sm25136175ad.30 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<freshhealthy999@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d9443c01a7336-23fa475fc06sm25136175ad.30 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<lbille@gitam.in>
+
+SERVER -> CLIENT: 250 2.1.5 OK d9443c01a7336-23fa475fc06sm25136175ad.30 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d9443c01a7336-23fa475fc06sm25136175ad.30 - gsmtp
+
+CLIENT -> SERVER: Date: Fri, 25 Jul 2025 06:52:23 +0530
+
+CLIENT -> SERVER: To: likhith <lbille@gitam.in>
+
+CLIENT -> SERVER: From: Fresh & Healthy <freshhealthy999@gmail.com>
+
+CLIENT -> SERVER: Subject: Your Order Has Been Confirmed!
+
+CLIENT -> SERVER: Message-ID: <KZJUeT2wHYtweU1qKbQunZv4HVK73maecqC9LE6Q32Y@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h2>Thank you for your order!</h2><p>Your order has been confirmed. Here are your order details:</p><p><strong>Order ID:</strong> 74</p><table border="1" cellpadding="6" cellspacing="0" width="100%"><tr><th>Product</th><th>Qty</th><th>Price</th></tr></table><p><strong>Total Amount:</strong> ₹0.00</p><p><strong>Delivery Address:</strong><br></p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1753406547 d9443c01a7336-23fa475fc06sm25136175ad.30 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-23fa475fc06sm25136175ad.30 - gsmtp
+
+SERVER -> CLIENT: 220 smtp.gmail.com ESMTP d2e1a72fcca58-761b04b353asm2466695b3a.79 - gsmtp
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: STARTTLS
+
+SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+CLIENT -> SERVER: EHLO localhost
+
+SERVER -> CLIENT: 250-smtp.gmail.com at your service, [103.103.209.153]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+CLIENT -> SERVER: AUTH LOGIN
+
+SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+CLIENT -> SERVER: [credentials hidden]
+SERVER -> CLIENT: 235 2.7.0 Accepted
+
+CLIENT -> SERVER: MAIL FROM:<freshhealthy999@gmail.com>
+
+SERVER -> CLIENT: 250 2.1.0 OK d2e1a72fcca58-761b04b353asm2466695b3a.79 - gsmtp
+
+CLIENT -> SERVER: RCPT TO:<lbille@gitam.in>
+
+SERVER -> CLIENT: 250 2.1.5 OK d2e1a72fcca58-761b04b353asm2466695b3a.79 - gsmtp
+
+CLIENT -> SERVER: DATA
+
+SERVER -> CLIENT: 354 Go ahead d2e1a72fcca58-761b04b353asm2466695b3a.79 - gsmtp
+
+CLIENT -> SERVER: Date: Fri, 25 Jul 2025 06:53:28 +0530
+
+CLIENT -> SERVER: To: likhith <lbille@gitam.in>
+
+CLIENT -> SERVER: From: Fresh & Healthy <freshhealthy999@gmail.com>
+
+CLIENT -> SERVER: Subject: Your Order Has Been Confirmed!
+
+CLIENT -> SERVER: Message-ID: <5qOGUtYR1uBxzUNfvPibeAgrZTTYjuGPZZe5nIZF4@localhost>
+
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.10.0 (https://github.com/PHPMailer/PHPMailer)
+
+CLIENT -> SERVER: MIME-Version: 1.0
+
+CLIENT -> SERVER: Content-Type: text/html; charset=iso-8859-1
+
+CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: <h2>Thank you for your order!</h2><p>Your order has been confirmed. Here are your order details:</p><p><strong>Order ID:</strong> 75</p><table border="1" cellpadding="6" cellspacing="0" width="100%"><tr><th>Product</th><th>Qty</th><th>Price</th></tr><tr><td>Grape Juice</td><td>1</td><td>60</td></tr><tr><td>Coconut Water</td><td>1</td><td>60</td></tr><tr><td>Strawberry Smoothie</td><td>1</td><td>60</td></tr></table><p><strong>Total Amount:</strong> ₹180.00</p><p><strong>Delivery Address:</strong><br>b likhith kumar<br />
+
+CLIENT -> SERVER: Talamarla(V), Kothacheruvu(M), Sri Sathya Sai(D)., Ananthapur, Andhra Pradesh – 515133<br />
+
+CLIENT -> SERVER: Phone: 9182821174</p>
+
+CLIENT -> SERVER: 
+
+CLIENT -> SERVER: .
+
+SERVER -> CLIENT: 250 2.0.0 OK  1753406612 d2e1a72fcca58-761b04b353asm2466695b3a.79 - gsmtp
+
+CLIENT -> SERVER: QUIT
+
+SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-761b04b353asm2466695b3a.79 - gsmtp
+

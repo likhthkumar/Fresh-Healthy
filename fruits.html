@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Fruits - Fresh & Healthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .profile-dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 0.5rem 0;
+            min-width: 200px;
+            display: none;
+            z-index: 99999;
+        }
+        .profile-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-item {
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #2e7d32;
+        }
+        .dropdown-divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 0.5rem 0;
+        }
+        
+        /* Sort Dropdown Styles */
+        .sort-dropdown-container {
+            position: relative;
+            z-index: 9999999 !important;
+        }
+        
+        .sort-trigger:hover {
+            border-color: #4a7c59;
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.08);
+        }
+        
+        .sort-trigger:hover .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .sort-dropdown-container:hover .sort-dropdown {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+            display: block !important;
+        }
+        
+        .sort-dropdown {
+            z-index: 9999 !important;
+        }
+        
+        .sort-option:hover {
+            background: #f5f7f6;
+            color: #4a7c59;
+        }
+        
+        .sort-option.active {
+            background: #81c784;
+            color: #2e7d32;
+        }
+        .sort-option.active span {
+            color: #2e7d32;
+        }
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            z-index: 99999;
+            margin-top: 4px;
+            max-height: 260px;
+            overflow-y: auto;
+            display: none;
+        }
+        .autocomplete-item {
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            font-size: 1.05rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.18s, color 0.18s;
+        }
+        .autocomplete-item img {
+            width: 38px;
+            height: 38px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            background: #f5f7f6;
+        }
+        .autocomplete-item.active, .autocomplete-item:hover {
+            background: #e6f4ea;
+            color: #2e7d32;
+        }
+        .autocomplete-no-results {
+            padding: 1rem 1.2rem;
+            color: #bdbdbd;
+            font-size: 1.05rem;
+        }
+        .search-bar {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo">
+                <a href="home_page.html" style="text-decoration:none; color:inherit;"><h1>Fresh & Healthy</h1></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="productSearch" placeholder="Search for fruits..." autocomplete="off">
+                <button><i class="fas fa-search"></i></button>
+                <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
+            </div>
+            <div class="header-actions">
+                <a href="wishlist.html" class="action-btn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </a>
+                <a href="cart.html" class="action-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <div class="profile-dropdown">
+                    <a href="#profile" class="action-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu" id="profileDropdownMenu">
+                        <a href="my_orders.php" class="dropdown-item">
+                            <i class="fas fa-box"></i>
+                            <span>My Orders</span>
+                        </a>
+                        <a href="edited_profile.php" class="dropdown-item">
+                            <i class="fas fa-user-edit"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="saved_addresses.php" class="dropdown-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Saved Addresses</span>
+                        </a>
+                        <a href="wishlist.html" class="dropdown-item">
+                            <i class="fas fa-heart"></i>
+                            <span>Wishlist</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="logout.php" class="dropdown-item" id="logoutDropdownItem">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="home_page.html">Home</a></li>
+                <li><a href="fruits.html" class="active">Fruits</a></li>
+                <li><a href="dry-fruits.html">Dry Fruits</a></li>
+                <li><a href="fruit-drinks.html">Fruit Drinks</a></li>
+                <li><a href="#special-offers">Special Offers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-section" data-aos="fade-up" data-aos-duration="1000">
+            <div class="section-header" style="display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <h2 style="margin-bottom: 0;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">Fresh Fruits</h2>
+                <div class="sort-dropdown-container" style="position: relative; z-index: 9999999 !important;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <button 
+                        id="sortTrigger" 
+                        class="sort-trigger" 
+                        aria-haspopup="true" 
+                        aria-expanded="false"
+                        style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.2rem; border-radius: 8px; border: 1px solid #e0e0e0; background: #fff; color: var(--text-primary); font-size: 1rem; font-family: inherit; font-weight: 500; outline: none; transition: all 0.2s; cursor: pointer; min-width: 180px; justify-content: space-between;">
+                        <span>Sort By</span>
+                        <i class="fas fa-chevron-down" style="transition: transform 0.2s; font-size: 0.8rem;"></i>
+                    </button>
+                    <div 
+                        id="sortDropdown" 
+                        class="sort-dropdown"
+                        style="position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.2s; z-index: 9999999 !important; margin-top: 4px;">
+                        <div class="sort-option" data-value="recommended" style="padding: 0.8rem 1.2rem; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid #f0f0f0;">
+                            <span style="color: var(--text-primary); font-weight: 500;">Recommended</span>
+                        </div>
+                        <div class="sort-option" data-value="price-asc" style="padding: 0.8rem 1.2rem; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid #f0f0f0;">
+                            <span style="color: var(--text-primary); font-weight: 500;">Price: Low → High</span>
+                        </div>
+                        <div class="sort-option" data-value="price-desc" style="padding: 0.8rem 1.2rem; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid #f0f0f0;">
+                            <span style="color: var(--text-primary); font-weight: 500;">Price: High → Low</span>
+                        </div>
+                        <div class="sort-option" data-value="name-asc" style="padding: 0.8rem 1.2rem; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid #f0f0f0;">
+                            <span style="color: var(--text-primary); font-weight: 500;">Name: A → Z</span>
+                        </div>
+                        <div class="sort-option" data-value="name-desc" style="padding: 0.8rem 1.2rem; cursor: pointer; transition: background 0.2s;">
+                            <span style="color: var(--text-primary); font-weight: 500;">Name: Z → A</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-grid">
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Apple&price=₹450%20/%20kg&image=https://media.post.rvohealth.io/wp-content/uploads/2020/09/Do_Apples_Affect_Diabetes_and_Blood_Sugar_Levels-732x549-thumbnail-1-732x549.jpg">
+                        <img src="https://media.post.rvohealth.io/wp-content/uploads/2020/09/Do_Apples_Affect_Diabetes_and_Blood_Sugar_Levels-732x549-thumbnail-1-732x549.jpg" alt="Fresh Apple">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Apple</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Banana&price=₹60%20/%20dozen&image=https://www.bigbasket.com/media/uploads/p/xxl/10000027_32-fresho-banana-robusta.jpg">
+                            <img src="https://www.bigbasket.com/media/uploads/p/xxl/10000027_32-fresho-banana-robusta.jpg" alt="Fresh Banana">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Banana</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Orange&price=$6.59%20/%20kg&image=https://www.allrecipes.com/thmb/y_uvjwXWAuD6T0RxaS19jFvZyFU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205638014-2000-d0fbf9170f2d43eeb046f56eec65319c.jpg">
+                            <img src="https://www.allrecipes.com/thmb/y_uvjwXWAuD6T0RxaS19jFvZyFU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205638014-2000-d0fbf9170f2d43eeb046f56eec65319c.jpg" alt="Fresh Orange">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Orange</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Grapes&price=$8.79%20/%20kg&image=https://www.perfection.com.au/hubfs/Produce%20Close%20up%20or%20Styled/grapes-banner.jpg">
+                        <img src="https://www.perfection.com.au/hubfs/Produce%20Close%20up%20or%20Styled/grapes-banner.jpg" alt="Fresh Grapes">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Grapes</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Mango&price=$6.14%20/%20kg&image=https://cdn5.dravinashtank.in/wp-content/uploads/2023/06/Mango.png">
+                        <img src="https://cdn5.dravinashtank.in/wp-content/uploads/2023/06/Mango.png" alt="Fresh Mango">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Mango</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Strawberry&price=$11.00%20/%20kg&image=https://images.unsplash.com/photo-1518635017498-87f514b751ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                        <img src="https://images.unsplash.com/photo-1518635017498-87f514b751ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fresh Strawberry">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Strawberry</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Pineapple&price=$3.99%20/%20piece&image=https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                            <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fresh Pineapple">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Pineapple</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Watermelon&price=$5.99%20/%20piece&image=https://hips.hearstapps.com/hmg-prod/images/fresh-ripe-watermelon-slices-on-wooden-table-royalty-free-image-1684966820.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*">
+                            <img src="https://hips.hearstapps.com/hmg-prod/images/fresh-ripe-watermelon-slices-on-wooden-table-royalty-free-image-1684966820.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*" alt="Fresh Watermelon">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Watermelon</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="250">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Kiwi&price=$0.99%20/%20piece&image=https://www.sakraworldhospital.com/assets/spl_splimgs/benefits-kiwi-of-fruit.webp">
+                            <img src="https://www.sakraworldhospital.com/assets/spl_splimgs/benefits-kiwi-of-fruit.webp" alt="Fresh Kiwi">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Kiwi</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Pomegranate&price=$2.49%20/%20piece&image=https://media6.ppl-media.com/mediafiles/blogs/pomegranate_78d63b59c0.webp">
+                            <img src="https://media6.ppl-media.com/mediafiles/blogs/pomegranate_78d63b59c0.webp" alt="Fresh Pomegranate">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Pomegranate</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="350">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Papaya&price=$3.29%20/%20piece&image=https://eureka-farms.com/cdn/shop/files/FullSizeRender.jpg?v=1725594434&width=1500">
+                            <img src="https://eureka-farms.com/cdn/shop/files/FullSizeRender.jpg?v=1725594434&width=1500" alt="Fresh Papaya">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Papaya</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <div class="product-image">
+                        <a href="product-detail.html?name=Fresh%20Dragon%20Fruit&price=$4.99%20/%20piece&image=https://images.everydayhealth.com/images/diet-nutrition/dragon-fruit-101-1440x810.jpg?sfvrsn=3bd52a80_3">
+                            <img src="https://images.everydayhealth.com/images/diet-nutrition/dragon-fruit-101-1440x810.jpg?sfvrsn=3bd52a80_3" alt="Fresh Dragon Fruit">
+                        </a>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Dragon Fruit</h3>
+                        <p class="price">₹50 / 250g</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <h3>About Us</h3>
+                <p>Fresh & Healthy is your trusted source for premium quality fresh fruits.</p>
+            </div>
+            <div class="footer-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Returns & Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:freshhealthy999@gmail.com">freshhealthy999@gmail.com</a></p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+            <p>&copy; 2024 Fresh & Healthy. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to update badges
+        function updateBadges() {
+            const cartItems = JSON.parse(localStorage.getItem(getCartKey())) || [];
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            
+            const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+            const wishlistCount = wishlist.length;
+            
+            document.getElementById('cartBadge').textContent = cartCount;
+            document.getElementById('wishlistBadge').textContent = wishlistCount;
+        }
+
+        // Centered toast notification for guest prompt
+        function showGuestModal(action) {
+            if (window.isAuthModalOpen) return;
+            window.isAuthModalOpen = true;
+            // Create modal HTML
+            const modalHTML = `
+                <div class="modal-overlay" id="guest-modal-overlay" style="
+                    display: flex;
+                    position: fixed;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    background: rgba(44,62,80,0.18);
+                    z-index: 1000;
+                    justify-content: center;
+                    align-items: center;
+                ">
+                    <div class="modal" style="
+                        background: #fff;
+                        border-radius: 18px;
+                        box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+                        padding: 2.2rem 2rem 1.5rem 2rem;
+                        max-width: 350px;
+                        width: 90vw;
+                        text-align: center;
+                        border: 2px solid #2e7d32;
+                        animation: popin 0.2s;
+                    ">
+                        <h3 style="
+                            margin: 0 0 1.2rem 0;
+                            font-size: 1.25rem;
+                            color: #2e7d32;
+                            font-weight: 700;
+                        ">Please Login/ Register to Continue.</h3>
+                        <div class="modal-btns" style="
+                            margin-top: 1.5rem;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.7rem;
+                        ">
+                            <a href="login.html" class="btn-primary" style="
+                                background: #2e7d32;
+                                color: #fff;
+                                border: none;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                text-decoration: none;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                                text-align: center;
+                            ">Login</a>
+                            <a href="register.html" class="btn-secondary" style="
+                                background: #e0e0e0;
+                                color: #2e7d32;
+                                border: 1px solid #2e7d32;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                text-decoration: none;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                                text-align: center;
+                            ">Register</a>
+                            <button class="btn-cancel" onclick="closeGuestModal()" style="
+                                background: #f5f5f5;
+                                color: #666;
+                                border: 1px solid #ddd;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                            ">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal to page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Add hover effects
+            const modal = document.getElementById('guest-modal-overlay');
+            const btnPrimary = modal.querySelector('.btn-primary');
+            const btnSecondary = modal.querySelector('.btn-secondary');
+            const btnCancel = modal.querySelector('.btn-cancel');
+            
+            btnPrimary.addEventListener('mouseenter', () => btnPrimary.style.background = '#1b5e20');
+            btnPrimary.addEventListener('mouseleave', () => btnPrimary.style.background = '#2e7d32');
+            btnSecondary.addEventListener('mouseenter', () => btnSecondary.style.background = '#c8e6c9');
+            btnSecondary.addEventListener('mouseleave', () => btnSecondary.style.background = '#e0e0e0');
+            btnCancel.addEventListener('mouseenter', () => btnCancel.style.background = '#e0e0e0');
+            btnCancel.addEventListener('mouseleave', () => btnCancel.style.background = '#f5f5f5');
+        }
+
+        // Function to close guest modal
+        function closeGuestModal() {
+            window.isAuthModalOpen = false;
+            const modal = document.getElementById('guest-modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // Function to handle adding items to cart
+        function getCartKey() {
+            const userId = localStorage.getItem('currentUserId');
+            return userId ? `cartItems_${userId}` : 'cartItems_guest';
+        }
+
+        function addToCart(productName, productPrice, imageUrl) {
+            if (localStorage.getItem('isGuest') === '1') {
+                showGuestModal('cart');
+                return;
+            }
+            let cartItems = JSON.parse(localStorage.getItem(getCartKey())) || [];
+            const existingItem = cartItems.find(item => item.name === productName);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                // Extract price and unit
+                const priceMatch = productPrice.match(/[0-9]+(?:\.[0-9]+)?/);
+                const price = priceMatch ? parseFloat(priceMatch[0].replace(/,/g, '')) : 0;
+                const unitMatch = productPrice.match(/([0-9]+\s*\w+)$/);
+                const unit = unitMatch ? unitMatch[1] : "";
+                cartItems.push({ name: productName, price: price, unit: unit, image: imageUrl, quantity: 1 });
+            }
+            localStorage.setItem(getCartKey(), JSON.stringify(cartItems));
+            updateBadges();
+            showNotification();
+        }
+
+        // Function to handle wishlist
+        function toggleWishlist(button) {
+            if (localStorage.getItem('isGuest') === '1') {
+                showGuestModal('wishlist');
+                return;
+            }
+            const productCard = button.closest('.product-card');
+            const productName = productCard.querySelector('h3').textContent;
+            const productPrice = productCard.querySelector('.price').textContent;
+            const productImage = productCard.querySelector('img').src;
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const index = wishlist.findIndex(item => item.name === productName);
+            if (index === -1) {
+                wishlist.push({ name: productName, price: productPrice, image: productImage });
+                button.classList.add('active');
+                button.querySelector('i').classList.remove('far');
+                button.querySelector('i').classList.add('fas');
+            } else {
+                wishlist.splice(index, 1);
+                button.classList.remove('active');
+                button.querySelector('i').classList.remove('fas');
+                button.querySelector('i').classList.add('far');
+            }
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateBadges();
+        }
+
+        // Initialize badges
+        updateBadges();
+
+        // --- SORT BY CONTROL ---
+        const productGrid = document.querySelector('.product-grid');
+        const sortTrigger = document.getElementById('sortTrigger');
+        const sortDropdown = document.getElementById('sortDropdown');
+        const sortOptions = document.querySelectorAll('.sort-option');
+        let originalOrder = [];
+        let products = [];
+        let currentSortOption = 'recommended';
+        let isDropdownOpen = false;
+        
+        // Helper to extract price as number
+        function parsePrice(priceStr) {
+            // Try to extract the first number (₹ or $)
+            const match = priceStr.match(/[\d,.]+/);
+            if (!match) return 0;
+            return parseFloat(match[0].replace(/,/g, ''));
+        }
+        
+        // Parse product cards into array
+        function getProductsFromDOM() {
+            const cards = Array.from(productGrid.children);
+            return cards.map(card => {
+                return {
+                    card,
+                    name: card.querySelector('h3').textContent.trim(),
+                    price: parsePrice(card.querySelector('.price').textContent),
+                };
+            });
+        }
+        
+        // Animation helpers
+        function fadeOutGrid(cb) {
+            productGrid.style.transition = 'opacity 0.25s';
+            productGrid.style.opacity = '0';
+            setTimeout(cb, 250);
+        }
+        
+        function fadeInGrid() {
+            productGrid.style.transition = 'opacity 0.25s';
+            productGrid.style.opacity = '1';
+        }
+        
+        // Render products in grid
+        function renderProducts(list) {
+            productGrid.innerHTML = '';
+            list.forEach(p => productGrid.appendChild(p.card));
+        }
+        
+        // Debounce helper
+        function debounce(fn, delay) {
+            let timer;
+            return function(...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+        
+        // Sort logic
+        function sortProducts(option) {
+            let sorted;
+            if (option === 'recommended') {
+                sorted = [...originalOrder];
+            } else if (option === 'price-asc') {
+                sorted = [...products].sort((a, b) => a.price - b.price);
+            } else if (option === 'price-desc') {
+                sorted = [...products].sort((a, b) => b.price - a.price);
+            } else if (option === 'name-asc') {
+                sorted = [...products].sort((a, b) => a.name.localeCompare(b.name));
+            } else if (option === 'name-desc') {
+                sorted = [...products].sort((a, b) => b.name.localeCompare(a.name));
+            } else {
+                sorted = [...originalOrder];
+            }
+            return sorted;
+        }
+        
+        // Update sort trigger text
+        function updateSortTriggerText(option) {
+            const triggerText = sortTrigger.querySelector('span');
+            const optionTexts = {
+                'recommended': 'Sort By',
+                'price-asc': 'Price: Low → High',
+                'price-desc': 'Price: High → Low',
+                'name-asc': 'Name: A → Z',
+                'name-desc': 'Name: Z → A'
+            };
+            triggerText.textContent = optionTexts[option] || 'Sort By';
+        }
+        
+        // Update active state
+        function updateActiveOption(selectedOption) {
+            sortOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.value === selectedOption) {
+                    option.classList.add('active');
+                }
+            });
+        }
+        
+        // Show dropdown
+        function showDropdown() {
+            sortDropdown.style.opacity = '1';
+            sortDropdown.style.visibility = 'visible';
+            sortDropdown.style.transform = 'translateY(0)';
+            sortTrigger.setAttribute('aria-expanded', 'true');
+            isDropdownOpen = true;
+        }
+        
+        // Hide dropdown
+        function hideDropdown() {
+            sortDropdown.style.opacity = '0';
+            sortDropdown.style.visibility = 'hidden';
+            sortDropdown.style.transform = 'translateY(-10px)';
+            sortTrigger.setAttribute('aria-expanded', 'false');
+            isDropdownOpen = false;
+        }
+        
+        // Handle sort change
+        const handleSortChange = debounce(function(option) {
+            currentSortOption = option;
+            updateSortTriggerText(option);
+            updateActiveOption(option);
+            fadeOutGrid(() => {
+                renderProducts(sortProducts(option));
+                fadeInGrid();
+            });
+            hideDropdown();
+        }, 120);
+        
+        // Mouse event handlers
+        let hideTimeout;
+        
+        function handleMouseEnter() {
+            clearTimeout(hideTimeout);
+            showDropdown();
+        }
+        
+        function handleMouseLeave() {
+            hideTimeout = setTimeout(() => {
+                hideDropdown();
+            }, 150);
+        }
+        
+        // Keyboard event handlers
+        function handleKeyDown(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (isDropdownOpen) {
+                    hideDropdown();
+                } else {
+                    showDropdown();
+                }
+            } else if (e.key === 'Escape' && isDropdownOpen) {
+                hideDropdown();
+            } else if (isDropdownOpen) {
+                const currentIndex = Array.from(sortOptions).findIndex(option => 
+                    option.dataset.value === currentSortOption
+                );
+                let newIndex = currentIndex;
+                
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    newIndex = (currentIndex + 1) % sortOptions.length;
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    newIndex = currentIndex === 0 ? sortOptions.length - 1 : currentIndex - 1;
+                }
+                
+                if (newIndex !== currentIndex) {
+                    const newOption = sortOptions[newIndex].dataset.value;
+                    handleSortChange(newOption);
+                }
+            }
+        }
+        
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            products = getProductsFromDOM();
+            originalOrder = [...products];
+            
+            // Set initial active state
+            updateActiveOption(currentSortOption);
+            
+            // Mouse events for hover behavior
+            const container = document.querySelector('.sort-dropdown-container');
+            container.addEventListener('mouseenter', handleMouseEnter);
+            container.addEventListener('mouseleave', handleMouseLeave);
+            
+            // Click events for sort options
+            sortOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    handleSortChange(option.dataset.value);
+                });
+                
+                // Prevent dropdown from closing when clicking inside
+                option.addEventListener('mouseenter', () => {
+                    clearTimeout(hideTimeout);
+                });
+            });
+            
+            // Keyboard events
+            sortTrigger.addEventListener('keydown', handleKeyDown);
+            sortTrigger.addEventListener('focus', () => {
+                // Show dropdown on focus for keyboard users
+                if (!isDropdownOpen) {
+                    showDropdown();
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!container.contains(e.target)) {
+                    hideDropdown();
+                }
+            });
+
+            // Add click event listeners to all Add to Cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('h3').textContent;
+                    const productPrice = productCard.querySelector('.price').textContent;
+                    const productImage = productCard.querySelector('img').src;
+                    addToCart(productName, productPrice, productImage);
+                });
+            });
+
+            // Add click event listeners to all Buy Now buttons
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (localStorage.getItem('isGuest') === '1') {
+                        showGuestModal('buy');
+                        return;
+                    }
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('h3').textContent;
+                    const productPrice = productCard.querySelector('.price').textContent;
+                    const productImage = productCard.querySelector('img').src;
+                    addToCart(productName, productPrice, productImage);
+                    window.location.href = 'cart.html';
+                });
+            });
+
+            // Add click event listeners to all Wishlist buttons
+            document.querySelectorAll('.wishlist-btn').forEach(button => {
+                // Check if product is in wishlist
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const productName = button.closest('.product-card').querySelector('h3').textContent;
+                if (wishlist.some(item => item.name === productName)) {
+                    button.classList.add('active');
+                    button.querySelector('i').classList.remove('far');
+                    button.querySelector('i').classList.add('fas');
+                }
+                button.addEventListener('click', function() {
+                    toggleWishlist(this);
+                });
+            });
+        });
+
+        // --- AUTOCOMPLETE SEARCH ---
+        const searchInput = document.getElementById('productSearch');
+        const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+        let searchResults = [];
+        let activeIndex = -1;
+        // Build product list from grid
+        function getAllProducts() {
+            return Array.from(document.querySelectorAll('.product-card')).map(card => ({
+                name: card.querySelector('h3').textContent.trim(),
+                price: card.querySelector('.price').textContent.trim(),
+                image: card.querySelector('img').src,
+                card
+            }));
+        }
+        // Render dropdown
+        function renderAutocomplete(results) {
+            if (!searchInput.value.trim()) {
+                autocompleteDropdown.style.display = 'none';
+                return;
+            }
+            if (results.length === 0) {
+                autocompleteDropdown.innerHTML = '<div class="autocomplete-no-results">No results found</div>';
+                autocompleteDropdown.style.display = 'block';
+                return;
+            }
+            autocompleteDropdown.innerHTML = results.map((item, i) => `
+                <div class="autocomplete-item${i === activeIndex ? ' active' : ''}" data-index="${i}">
+                    <img src="${item.image}" alt="${item.name}">
+                    <span>${item.name}</span>
+                    <span style="margin-left:auto;color:#388e3c;font-weight:500;">${item.price}</span>
+                </div>
+            `).join('');
+            autocompleteDropdown.style.display = 'block';
+        }
+        // Filter products
+        function filterProducts(query) {
+            const all = getAllProducts();
+            return all.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+        }
+        // Handle input
+        searchInput.addEventListener('input', function() {
+            const val = this.value.trim();
+            if (!val) {
+                autocompleteDropdown.style.display = 'none';
+                return;
+            }
+            searchResults = filterProducts(val);
+            activeIndex = -1;
+            renderAutocomplete(searchResults);
+        });
+        // Handle keyboard navigation
+        searchInput.addEventListener('keydown', function(e) {
+            if (autocompleteDropdown.style.display !== 'block') return;
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                activeIndex = (activeIndex + 1) % searchResults.length;
+                renderAutocomplete(searchResults);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                activeIndex = (activeIndex - 1 + searchResults.length) % searchResults.length;
+                renderAutocomplete(searchResults);
+            } else if (e.key === 'Enter') {
+                if (activeIndex >= 0 && searchResults[activeIndex]) {
+                    selectAutocomplete(searchResults[activeIndex]);
+                }
+            } else if (e.key === 'Escape') {
+                autocompleteDropdown.style.display = 'none';
+            }
+        });
+        // Handle mouse click
+        autocompleteDropdown.addEventListener('mousedown', function(e) {
+            const item = e.target.closest('.autocomplete-item');
+            if (item) {
+                const idx = parseInt(item.dataset.index, 10);
+                if (!isNaN(idx) && searchResults[idx]) {
+                    selectAutocomplete(searchResults[idx]);
+                }
+            }
+        });
+        // Select product
+        function selectAutocomplete(product) {
+            autocompleteDropdown.style.display = 'none';
+            searchInput.value = product.name;
+            // Scroll to product card
+            product.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            product.card.classList.add('highlight-search');
+            setTimeout(() => product.card.classList.remove('highlight-search'), 1200);
+        }
+        // Hide dropdown on outside click
+        document.addEventListener('mousedown', function(e) {
+            if (!autocompleteDropdown.contains(e.target) && e.target !== searchInput) {
+                autocompleteDropdown.style.display = 'none';
+            }
+        });
+        // Highlight style for found card
+        const style = document.createElement('style');
+        style.innerHTML = `.highlight-search { box-shadow: 0 0 0 4px #81c784 !important; transition: box-shadow 0.2s; }`;
+        document.head.appendChild(style);
+
+        // Add at the top of the script section
+        let loginModalContext = 'orders'; // default
+
+        // Update event listeners to set context
+        // My Orders
+        const myOrdersLink = document.querySelector('a[href="my_orders.php"]');
+        if (myOrdersLink) {
+            myOrdersLink.addEventListener('click', function(e) {
+                if (localStorage.getItem('isGuest') === '1') {
+                    e.preventDefault();
+                    loginModalContext = 'orders';
+                    showLoginModal();
+                }
+            });
+        }
+        // Edit Profile
+        const editProfileLink = document.querySelector('a[href="edited_profile.php"]');
+        if (editProfileLink) {
+            editProfileLink.addEventListener('click', function(e) {
+                if (localStorage.getItem('isGuest') === '1') {
+                    e.preventDefault();
+                    loginModalContext = 'edited_profile';
+                    showLoginModal();
+                }
+            });
+        }
+
+        // Function to show login modal
+        function showLoginModal() {
+            if (window.isAuthModalOpen) return;
+            window.isAuthModalOpen = true;
+            // Add modal styles if not already present
+            if (!document.getElementById('custom-login-modal-style')) {
+                const style = document.createElement('style');
+                style.id = 'custom-login-modal-style';
+                style.textContent = `
+                .custom-modal-overlay {
+                    display: flex;
+                    position: fixed;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    background: rgba(44,62,80,0.18);
+                    z-index: 1000;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .custom-modal {
+                    background: #fff;
+                    border-radius: 18px;
+                    box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+                    padding: 2.2rem 2rem 1.5rem 2rem;
+                    max-width: 350px;
+                    width: 90vw;
+                    text-align: center;
+                    border: 2px solid #2e7d32;
+                    animation: popin 0.2s;
+                }
+                .custom-modal h3 {
+                    margin: 0 0 1.2rem 0;
+                    font-size: 1.25rem;
+                    color: #2e7d32;
+                    font-weight: 700;
+                }
+                .custom-modal-btns {
+                    margin-top: 1.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.7rem;
+                }
+                .custom-modal-btn {
+                    border: none;
+                    border-radius: 30px;
+                    padding: 0.9rem 0;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: background 0.18s, color 0.18s, border 0.18s;
+                    text-decoration: none;
+                    outline: none;
+                }
+                .custom-modal-btn.login {
+                    background: #2e7d32;
+                    color: #fff;
+                }
+                .custom-modal-btn.login:hover {
+                    background: #1b5e20;
+                }
+                .custom-modal-btn.register {
+                    background: #fff;
+                    color: #2e7d32;
+                    border: 2px solid #2e7d32;
+                }
+                .custom-modal-btn.register:hover {
+                    background: #e6f4ea;
+                }
+                .custom-modal-btn.cancel {
+                    background: #f5f5f5;
+                    color: #888;
+                }
+                .custom-modal-btn.cancel:hover {
+                    background: #e0e0e0;
+                }
+                `;
+                document.head.appendChild(style);
+            }
+            // Set modal message (always the same)
+            let modalMsg = 'Please Login/ Register to Continue.';
+            // Create modal HTML
+            const modalHTML = `
+                <div class="custom-modal-overlay" id="login-modal-overlay">
+                    <div class="custom-modal">
+                        <h3>${modalMsg}</h3>
+                        <div class="custom-modal-btns">
+                            <a href="login.html" class="custom-modal-btn login">Login</a>
+                            <a href="register.html" class="custom-modal-btn register">Register</a>
+                            <button class="custom-modal-btn cancel" onclick="closeLoginModal()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            // Add modal to page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+
+        // Function to close login modal
+        function closeLoginModal() {
+            window.isAuthModalOpen = false;
+            const modal = document.getElementById('login-modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // Handle Buy Now, Add to Cart, Wishlist for guest users
+        function handleGuestAction(selector) {
+            document.querySelectorAll(selector).forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    if (localStorage.getItem('isGuest') === '1') {
+                        e.preventDefault();
+                        showLoginModal();
+                    }
+                });
+            });
+        }
+        // Adjust selectors as per your button classes/ids
+        handleGuestAction('.buy-now, .btn-buy-now');
+        handleGuestAction('.add-to-cart, .btn-add-to-cart');
+        handleGuestAction('.wishlist, .btn-wishlist, .add-to-wishlist');
+
+        // Replace Logout with Login for guest users
+        function updateProfileDropdownForGuest() {
+            if (localStorage.getItem('isGuest') === '1') {
+                var logoutItem = document.getElementById('logoutDropdownItem');
+                if (logoutItem) {
+                    var loginItem = document.createElement('a');
+                    loginItem.href = 'login.html';
+                    loginItem.className = 'dropdown-item';
+                    loginItem.innerHTML = '<i class="fas fa-sign-in-alt"></i> <span>Login</span>';
+                    logoutItem.parentNode.replaceChild(loginItem, logoutItem);
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateProfileDropdownForGuest);
+    </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchName = urlParams.get('search');
+    if (searchName) {
+        const cards = document.querySelectorAll('.product-card, .category-card, .featured-card');
+        let found = false;
+        cards.forEach(card => {
+            const nameElem = card.querySelector('.product-info h3, .category-info h3, .featured-info h3, .item-name, h3');
+            if (nameElem && nameElem.textContent.trim().toLowerCase() === searchName.trim().toLowerCase()) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.boxShadow = '0 0 0 4px #ffa726, 0 4px 20px rgba(0,0,0,0.08)';
+                card.style.transition = 'box-shadow 0.5s';
+                found = true;
+                setTimeout(() => { card.style.boxShadow = ''; }, 3000);
+            }
+        });
+    }
+});
+</script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS with professional settings
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            mirror: false,
+            anchorPlacement: 'top-bottom',
+            offset: 120,
+            delay: 0,
+            disable: false,
+            disableMutationObserver: false,
+            startEvent: 'DOMContentLoaded',
+            initClassName: 'aos-init',
+            animatedClassName: 'aos-animate',
+            useClassNames: false,
+            debounceDelay: 50,
+            throttleDelay: 99,
+            responsive: {
+                0: { offset: 80, delay: 0 },
+                768: { offset: 120, delay: 0 },
+                1024: { offset: 150, delay: 0 }
+            }
+        });
+        
+        // Refresh AOS on dynamic content changes
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+        });
+    </script>
+</body>
+</html> 

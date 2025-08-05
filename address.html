@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delivery Address - Fresh & Healthy</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #66bb6a;
+            --primary-dark: #1b5e20;
+            --accent-color: #ffa726;
+            --accent-dark: #f57c00;
+            --text-primary: #2c3e50;
+            --text-secondary: #546e7a;
+            --background: linear-gradient(135deg, #f8faf9 0%, #e8f5e9 100%);
+            --card-background: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .address-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive Design for Address */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .address-container {
+                max-width: 100%;
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .form-group input,
+            .form-group select {
+                padding: 0.7rem;
+                font-size: 0.9rem;
+            }
+            
+            .submit-btn,
+            .back-btn {
+                padding: 0.7rem;
+                font-size: 0.9rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+            }
+            
+            .address-container {
+                padding: 1rem;
+                border-radius: 8px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            .form-group input,
+            .form-group select {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+            
+            .submit-btn,
+            .back-btn {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+            
+            .button-group {
+                gap: 0.6rem;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .address-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.8rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            transition: var(--transition-base);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.1);
+        }
+
+        .submit-btn {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-light);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            padding: 0.8rem;
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .back-btn:hover {
+            background: var(--primary-light);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Stepper Start -->
+    <div class="modern-stepper">
+      <div class="step">BAG</div>
+      <div class="step-separator"></div>
+      <div class="step active">ADDRESS</div>
+      <div class="step-separator"></div>
+      <div class="step">PAYMENT</div>
+    </div>
+    <style>
+      .modern-stepper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2.5rem auto 2rem auto;
+        background: #fff;
+        border-radius: 22px;
+        padding: 1.2rem 1.5rem 0.7rem 1.5rem;
+        max-width: 700px;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+      }
+      .modern-stepper .step {
+        color: #546e7a;
+        font-size: 1.15rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        position: relative;
+        background: none;
+        border: none;
+        padding: 0 0.5rem 0.5rem 0.5rem;
+        transition: color 0.2s;
+      }
+      .modern-stepper .step.active {
+        color: #2ec492;
+      }
+      .modern-stepper .step.active::after {
+        content: '';
+        display: block;
+        margin: 0 auto;
+        width: 32px;
+        height: 3px;
+        background: #2ec492;
+        border-radius: 2px;
+        margin-top: 6px;
+      }
+      .modern-stepper .step-separator {
+        flex: 1 1 0;
+        border-bottom: 2px dotted #bdbdbd;
+        margin: 0 0.5rem 0.2rem 0.5rem;
+        height: 0;
+      }
+    </style>
+    <!-- Modern Stepper End -->
+    <div class="address-container">
+        <h1>Delivery Address</h1>
+        <form class="address-form" action="save_address.php" method="POST">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number</label>
+                <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="Enter your mobile number" required pattern="[0-9]{10}" maxlength="10" style="padding: 0.8rem; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 1rem; width: 100%;">
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <select id="state" name="state" required>
+                    <option value="">Select State</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    <option value="Ladakh">Ladakh</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Puducherry">Puducherry</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="postalCode">Postal Code</label>
+                <input type="text" id="postalCode" name="postalCode" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="streetName">Street Name</label>
+                <input type="text" id="streetName" name="streetName" required>
+            </div>
+            <div class="button-group">
+                <button type="button" class="back-btn" onclick="history.back()">Back</button>
+                <button type="submit" class="submit-btn">Save Address</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Check if we're editing an address and pre-fill the form
+        document.addEventListener('DOMContentLoaded', function() {
+            const editingAddress = JSON.parse(localStorage.getItem('editingAddress'));
+            if (editingAddress) {
+                document.getElementById('fullName').value = editingAddress.fullName || '';
+                document.getElementById('mobileNumber').value = editingAddress.mobileNumber || '';
+                document.getElementById('state').value = editingAddress.state || '';
+                document.getElementById('postalCode').value = editingAddress.postalCode || '';
+                document.getElementById('city').value = editingAddress.city || '';
+                document.getElementById('streetName').value = editingAddress.streetName || '';
+                
+                // Update the page title and button text
+                document.querySelector('h1').textContent = 'Edit Address';
+                document.querySelector('.submit-btn').textContent = 'Update Address';
+            }
+        });
+
+        document.getElementById('addressForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const address = {
+                fullName: document.getElementById('fullName').value,
+                mobileNumber: document.getElementById('mobileNumber').value,
+                state: document.getElementById('state').value,
+                postalCode: document.getElementById('postalCode').value,
+                city: document.getElementById('city').value,
+                streetName: document.getElementById('streetName').value
+            };
+
+            // Add new address
+            const savedAddresses = JSON.parse(localStorage.getItem('savedAddresses')) || [];
+            savedAddresses.push(address);
+            localStorage.setItem('savedAddresses', JSON.stringify(savedAddresses));
+            if (savedAddresses.length === 1) {
+                localStorage.setItem('defaultAddress', '0');
+            }
+            localStorage.setItem('userAddress', JSON.stringify(address));
+            alert('Address saved successfully!');
+
+            // Sync cart to session before redirecting to cart.html
+            const userId = localStorage.getItem('currentUserId');
+            const cart = JSON.parse(localStorage.getItem('cartItems_' + (userId ? userId : 'guest'))) || [];
+            if (!cart.length) {
+                alert('Your cart is empty. Please add items to your cart before proceeding to cart.');
+                return;
+            }
+            // Show loading message
+            const loadingMsg = document.createElement('div');
+            loadingMsg.textContent = 'Preparing your cart...';
+            loadingMsg.style.position = 'fixed';
+            loadingMsg.style.top = '50%';
+            loadingMsg.style.left = '50%';
+            loadingMsg.style.transform = 'translate(-50%, -50%)';
+            loadingMsg.style.background = '#fff';
+            loadingMsg.style.padding = '1.5rem 2.5rem';
+            loadingMsg.style.borderRadius = '12px';
+            loadingMsg.style.boxShadow = '0 2px 12px rgba(44,62,80,0.13)';
+            loadingMsg.style.fontSize = '1.2rem';
+            loadingMsg.style.zIndex = '9999';
+            document.body.appendChild(loadingMsg);
+
+            fetch('set_cart.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cart })
+            })
+            .then(res => res.text())
+            .then((result) => {
+                document.body.removeChild(loadingMsg);
+                window.location.href = 'cart.html';
+            })
+            .catch((err) => {
+                document.body.removeChild(loadingMsg);
+                alert('Error syncing cart. Please try again.');
+                console.error(err);
+            });
+        });
+    </script>
+</body>
+</html> 

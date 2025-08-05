@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search Results - Fresh & Healthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #66bb6a;
+            --primary-dark: #1b5e20;
+            --accent-color: #ffa726;
+            --accent-dark: #f57c00;
+            --text-primary: #2c3e50;
+            --text-secondary: #546e7a;
+            --background: linear-gradient(135deg, #f8faf9 0%, #e8f5e9 100%);
+            --card-background: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .search-results-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-base);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-category {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-light);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-light);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: var(--transition-base);
+        }
+
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="search-results-container">
+        <h1>Search Results</h1>
+        <div class="search-results" id="searchResults">
+            <!-- Search results will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        // Get search results from localStorage
+        const searchResults = JSON.parse(localStorage.getItem('searchResults')) || [];
+        const resultsContainer = document.getElementById('searchResults');
+
+        if (searchResults.length === 0) {
+            resultsContainer.innerHTML = `
+                <div class="no-results">
+                    <h2>No products found</h2>
+                    <a href="home_page.html" class="back-btn">Back to Home</a>
+                </div>
+            `;
+        } else {
+            resultsContainer.innerHTML = searchResults.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-category">${product.category}</div>
+                        <div class="product-price">${product.price}</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('${product.name}', '${product.price}', '${product.image}')">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Function to show guest modal
+        function showGuestModal() {
+            // Create modal HTML
+            const modalHTML = `
+                <div class="modal-overlay" id="guest-modal-overlay" style="
+                    display: flex;
+                    position: fixed;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    background: rgba(44,62,80,0.18);
+                    z-index: 1000;
+                    justify-content: center;
+                    align-items: center;
+                ">
+                    <div class="modal" style="
+                        background: #fff;
+                        border-radius: 18px;
+                        box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+                        padding: 2.2rem 2rem 1.5rem 2rem;
+                        max-width: 350px;
+                        width: 90vw;
+                        text-align: center;
+                        border: 2px solid #2e7d32;
+                        animation: popin 0.2s;
+                    ">
+                        <h3 style="
+                            margin: 0 0 1.2rem 0;
+                            font-size: 1.25rem;
+                            color: #2e7d32;
+                            font-weight: 700;
+                        ">Please log in or register to continue.</h3>
+                        <div class="modal-btns" style="
+                            margin-top: 1.5rem;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.7rem;
+                        ">
+                            <a href="login.html" class="btn-primary" style="
+                                background: #2e7d32;
+                                color: #fff;
+                                border: none;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                text-decoration: none;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                                text-align: center;
+                            ">Login</a>
+                            <a href="register.html" class="btn-secondary" style="
+                                background: #e0e0e0;
+                                color: #2e7d32;
+                                border: 1px solid #2e7d32;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                text-decoration: none;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                                text-align: center;
+                            ">Register</a>
+                            <button class="btn-cancel" onclick="closeGuestModal()" style="
+                                background: #f5f5f5;
+                                color: #666;
+                                border: 1px solid #ddd;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                            ">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal to page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Add hover effects
+            const modal = document.getElementById('guest-modal-overlay');
+            const btnPrimary = modal.querySelector('.btn-primary');
+            const btnSecondary = modal.querySelector('.btn-secondary');
+            const btnCancel = modal.querySelector('.btn-cancel');
+            
+            btnPrimary.addEventListener('mouseenter', () => btnPrimary.style.background = '#1b5e20');
+            btnPrimary.addEventListener('mouseleave', () => btnPrimary.style.background = '#2e7d32');
+            btnSecondary.addEventListener('mouseenter', () => btnSecondary.style.background = '#c8e6c9');
+            btnSecondary.addEventListener('mouseleave', () => btnSecondary.style.background = '#e0e0e0');
+            btnCancel.addEventListener('mouseenter', () => btnCancel.style.background = '#e0e0e0');
+            btnCancel.addEventListener('mouseleave', () => btnCancel.style.background = '#f5f5f5');
+        }
+
+        // Function to close guest modal
+        function closeGuestModal() {
+            const modal = document.getElementById('guest-modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function addToCart(productName, price, image) {
+            if (localStorage.getItem('isGuest') === '1') {
+                showGuestModal();
+                return;
+            }
+            
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const existingItem = cartItems.find(item => item.name === productName);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    name: productName,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            alert('Product added to cart!');
+        }
+    </script>
+</body>
+</html> 

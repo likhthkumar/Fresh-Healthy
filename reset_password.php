@@ -1,0 +1,312 @@
+<?php
+require 'db.php';
+
+// Set timezone to match your local time
+date_default_timezone_set('Asia/Kolkata');
+
+$token = $_GET['token'] ?? '';
+
+/* 1. Validate token */
+$stmt = $pdo->prepare("
+    SELECT * FROM password_resets 
+    WHERE token = ? AND is_used = 0 AND expires_at > NOW()
+");
+$stmt->execute([$token]);
+$row = $stmt->fetch();
+
+if (!$row) {
+    $error_message = 'Invalid or expired reset link.';
+} else {
+    // Store email for use in save_new_password.php
+    $user_email = $row['email'];
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - Fresh & Healthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #66bb6a;
+            --primary-dark: #1b5e20;
+            --accent-color: #ffa726;
+            --accent-dark: #f57c00;
+            --text-primary: #2c3e50;
+            --text-secondary: #546e7a;
+            --background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            --card-background: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--background);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Soft animated background shapes */
+        .bg-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.35;
+            z-index: 0;
+            animation: float 12s ease-in-out infinite alternate;
+        }
+        .bg-shape1 {
+            width: 340px; height: 340px; background: #a1c4fd; left: -120px; top: -80px; animation-delay: 0s;
+        }
+        .bg-shape2 {
+            width: 260px; height: 260px; background: #c2e9fb; right: -100px; top: 60px; animation-delay: 2s;
+        }
+        .bg-shape3 {
+            width: 200px; height: 200px; background: #b2fefa; left: 40vw; bottom: -80px; animation-delay: 4s;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-30px) scale(1.08); }
+        }
+
+        .reset-card {
+            background: rgba(255,255,255,0.85);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.13), 0 1.5px 8px rgba(46,125,50,0.07);
+            padding: 2.7rem 2.2rem 2.2rem 2.2rem;
+            max-width: 430px;
+            width: 100%;
+            margin: 2rem auto;
+            animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(8px) saturate(1.2);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reset-icon {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.1rem auto;
+            box-shadow: 0 2px 12px rgba(161,196,253,0.18);
+            font-size: 2.7rem;
+            color: #fff;
+            position: relative;
+            animation: bounceIn 0.8s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            60% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        .reset-card h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+
+        .reset-card .subtitle {
+            text-align: center;
+            color: #5e6c7b;
+            font-size: 1.08rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        .error-message {
+            background: #ffebee;
+            border: 1px solid #e53935;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
+            color: #c62828;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 0.95rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #bdbdbd;
+            font-size: 1.1rem;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 2.7rem;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            background: #f9f9f9;
+            color: #222;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .input-field:focus {
+            border-color: #2e7d32;
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 0 2px #e0f2f1;
+        }
+
+        .floating-label {
+            position: absolute;
+            left: 2.7rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 1.05rem;
+            background: #fff;
+            padding: 0 0.2rem;
+            pointer-events: none;
+            transition: 0.18s cubic-bezier(.4,0,.2,1);
+            z-index: 3;
+        }
+
+        .input-field:focus + .floating-label,
+        .input-field:not(:placeholder-shown) + .floating-label {
+            top: -0.7rem;
+            left: 2.2rem;
+            font-size: 0.92rem;
+            color: #2e7d32;
+            background: #fff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.85rem 1.7rem;
+            font-size: 1.08rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: #2e7d32;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(46,125,50,0.08);
+        }
+
+        .btn-primary:hover {
+            background: #1b5e20;
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .back-link a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .reset-card {
+                padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+                max-width: 98vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shape bg-shape1"></div>
+    <div class="bg-shape bg-shape2"></div>
+    <div class="bg-shape bg-shape3"></div>
+    
+    <div class="reset-card">
+        <?php if (isset($error_message)): ?>
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <?= htmlspecialchars($error_message) ?>
+            </div>
+            <div class="back-link">
+                <a href="forgot_password.html">
+                    <i class="fas fa-arrow-left"></i> Back to Forgot Password
+                </a>
+            </div>
+        <?php else: ?>
+            <div class="reset-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h2>Reset Password</h2>
+            <div class="subtitle">Create a new secure password for your account</div>
+            
+            <form action="save_new_password.php" method="POST">
+                <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+                <input type="hidden" name="email" value="<?= htmlspecialchars($user_email) ?>">
+                
+                <div class="form-group">
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
+                    <input type="password" name="password" class="input-field" required placeholder=" " aria-label="New Password">
+                    <label class="floating-label">New Password</label>
+                </div>
+                
+                <div class="form-group">
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
+                    <input type="password" name="confirm_password" class="input-field" required placeholder=" " aria-label="Confirm Password">
+                    <label class="floating-label">Confirm Password</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save New Password
+                </button>
+            </form>
+            
+            <div class="back-link">
+                <a href="login.html">
+                    <i class="fas fa-arrow-left"></i> Back to Login
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+</body>
+</html>

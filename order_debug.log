@@ -1,0 +1,438 @@
+2025-07-22 01:46:29
+POST: Array
+(
+    [amount] => 404.99
+    [cart] => [{"name":"Fresh Papaya (1kg)","price":"₹400","image":"https://eureka-farms.com/cdn/shop/files/FullSizeRender.jpg?v=1725594434","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Fresh Papaya (1kg)
+    [price] => ₹400
+    [image] => https://eureka-farms.com/cdn/shop/files/FullSizeRender.jpg?v=1725594434
+    [quantity] => 1
+)
+
+2025-07-22 01:50:41
+POST: Array
+(
+    [amount] => 224.99
+    [cart] => [{"name":"Fresh Grapes (500g)","price":"₹220","image":"https://www.perfection.com.au/hubfs/Produce Close up or Styled/grapes-banner.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Fresh Grapes (500g)
+    [price] => ₹220
+    [image] => https://www.perfection.com.au/hubfs/Produce Close up or Styled/grapes-banner.jpg
+    [quantity] => 1
+)
+
+2025-07-22 01:55:25
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Dried Figs","price":"₹200 / 250g","image":"https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Dried Figs
+    [price] => ₹200 / 250g
+    [image] => https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg
+    [quantity] => 1
+)
+
+2025-07-22 01:58:12
+POST: Array
+(
+    [amount] => 224.99
+    [cart] => [{"name":"Mixed Dry Fruits (500g)","price":"₹220","image":"https://indianafoods.in/wp-content/uploads/2020/02/imm.png","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Mixed Dry Fruits (500g)
+    [price] => ₹220
+    [image] => https://indianafoods.in/wp-content/uploads/2020/02/imm.png
+    [quantity] => 1
+)
+
+2025-07-22 02:19:28
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Dates","price":"₹200 / 250g","image":"https://i.natgeofe.com/n/660afe7e-ef6c-42b8-938c-f6d5d21059a5/NationalGeographic_1365653.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Dates
+    [price] => ₹200 / 250g
+    [image] => https://i.natgeofe.com/n/660afe7e-ef6c-42b8-938c-f6d5d21059a5/NationalGeographic_1365653.jpg
+    [quantity] => 1
+)
+
+2025-07-22 02:32:40
+POST: Array
+(
+    [amount] => 624.99
+    [cart] => [{"name":"Fresh Papaya (1kg)","price":"₹400","image":"https://eureka-farms.com/cdn/shop/files/FullSizeRender.jpg?v=1725594434","quantity":1},{"name":"Fresh Dragon Fruit (500g)","price":"₹220","image":"https://images.everydayhealth.com/images/diet-nutrition/dragon-fruit-101-1440x810.jpg?sfvrsn=3bd52a80_3","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Fresh Papaya (1kg)
+    [price] => ₹400
+    [image] => https://eureka-farms.com/cdn/shop/files/FullSizeRender.jpg?v=1725594434
+    [quantity] => 1
+)
+
+Inserting item: Array
+(
+    [name] => Fresh Dragon Fruit (500g)
+    [price] => ₹220
+    [image] => https://images.everydayhealth.com/images/diet-nutrition/dragon-fruit-101-1440x810.jpg?sfvrsn=3bd52a80_3
+    [quantity] => 1
+)
+
+2025-07-22 02:56:34
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Walnuts","price":"₹200 / 250g","image":"https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Walnuts
+    [price] => ₹200 / 250g
+    [image] => https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg
+    [quantity] => 1
+)
+
+2025-07-22 03:03:38
+POST: Array
+(
+    [amount] => 404.99
+    [cart] => [{"name":"Dried Apricots (1kg)","price":"₹400","image":"https://www.giacovelli.it/wp-content/uploads/2023/07/dried-apricots-full-frame-2022-11-15-15-04-06-utc-scaled-e1690968549545.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Dried Apricots (1kg)
+    [price] => ₹400
+    [image] => https://www.giacovelli.it/wp-content/uploads/2023/07/dried-apricots-full-frame-2022-11-15-15-04-06-utc-scaled-e1690968549545.jpg
+    [quantity] => 1
+)
+
+2025-07-22 03:10:47
+POST: Array
+(
+    [amount] => 224.99
+    [cart] => [{"name":"Fresh Pomegranate (500g)","price":"₹220","image":"https://media6.ppl-media.com/mediafiles/blogs/pomegranate_78d63b59c0.webp","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Fresh Pomegranate (500g)
+    [price] => ₹220
+    [image] => https://media6.ppl-media.com/mediafiles/blogs/pomegranate_78d63b59c0.webp
+    [quantity] => 1
+)
+
+2025-07-22 06:01:47
+POST: Array
+(
+)
+
+2025-07-22 06:01:50
+POST: Array
+(
+)
+
+2025-07-22 06:02:12
+POST: Array
+(
+    [amount] => 50254.99
+    [cart] => [{"name":"Fresh Watermelon","price":"₹50 / 250g","image":"https://hips.hearstapps.com/hmg-prod/images/fresh-ripe-watermelon-slices-on-wooden-table-royalty-free-image-1684966820.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Fresh Watermelon
+    [price] => ₹50 / 250g
+    [image] => https://hips.hearstapps.com/hmg-prod/images/fresh-ripe-watermelon-slices-on-wooden-table-royalty-free-image-1684966820.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*
+    [quantity] => 1
+)
+
+2025-07-22 06:03:46
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Dried Figs","price":"₹200 / 250g","image":"https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Dried Figs
+    [price] => ₹200 / 250g
+    [image] => https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg
+    [quantity] => 1
+)
+
+2025-07-22 06:03:49
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Dried Figs","price":"₹200 / 250g","image":"https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Dried Figs
+    [price] => ₹200 / 250g
+    [image] => https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg
+    [quantity] => 1
+)
+
+2025-07-22 06:09:31
+POST: Array
+(
+    [amount] => 50254.99
+    [cart] => [{"name":"Fresh Banana","price":"₹50 / 250g","image":"https://www.bigbasket.com/media/uploads/p/xxl/10000027_32-fresho-banana-robusta.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Fresh Banana
+    [price] => ₹50 / 250g
+    [image] => https://www.bigbasket.com/media/uploads/p/xxl/10000027_32-fresho-banana-robusta.jpg
+    [quantity] => 1
+)
+
+2025-07-22 06:11:57
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Walnuts","price":"₹200 / 250g","image":"https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Walnuts
+    [price] => ₹200 / 250g
+    [image] => https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg
+    [quantity] => 1
+)
+
+2025-07-22 06:11:59
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Walnuts","price":"₹200 / 250g","image":"https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Walnuts
+    [price] => ₹200 / 250g
+    [image] => https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg
+    [quantity] => 1
+)
+
+2025-07-22 17:21:31
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Walnuts","price":"₹200 / 250g","image":"https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Walnuts
+    [price] => ₹200 / 250g
+    [image] => https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg
+    [quantity] => 1
+)
+
+2025-07-22 17:24:16
+POST: Array
+(
+    [amount] => 224.99
+    [cart] => [{"name":"Dried Figs (500g)","price":"₹220","image":"https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Dried Figs (500g)
+    [price] => ₹220
+    [image] => https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg
+    [quantity] => 1
+)
+
+2025-07-22 17:28:48
+POST: Array
+(
+    [amount] => 224.99
+    [cart] => [{"name":"Dried Figs (500g)","price":"₹220","image":"https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Dried Figs (500g)
+    [price] => ₹220
+    [image] => https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg
+    [quantity] => 1
+)
+
+2025-07-22 17:31:28
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Prunes","price":"₹200 / 250g","image":"https://www.forksoverknives.com/uploads/2024/09/dried-plums-prunes.jpg?format=webp&optimize=high&precrop=16%3A9%2Csmart","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Prunes
+    [price] => ₹200 / 250g
+    [image] => https://www.forksoverknives.com/uploads/2024/09/dried-plums-prunes.jpg?format=webp&optimize=high&precrop=16%3A9%2Csmart
+    [quantity] => 1
+)
+
+2025-07-22 17:35:55
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Cashews","price":"₹200 / 250g","image":"https://assets.clevelandclinic.org/transform/ec440b31-4766-4167-81b5-fb4eece02c16/cashews-511301902","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Cashews
+    [price] => ₹200 / 250g
+    [image] => https://assets.clevelandclinic.org/transform/ec440b31-4766-4167-81b5-fb4eece02c16/cashews-511301902
+    [quantity] => 1
+)
+
+2025-07-23 01:40:01
+POST: Array
+(
+    [amount] => 200254.99
+    [cart] => [{"name":"Premium Almonds","price":"₹200 / 250g","image":"https://5.imimg.com/data5/US/HN/MY-54878788/raw-almonds-500x500.jpg","quantity":1}]
+)
+
+Inserting item: Array
+(
+    [name] => Premium Almonds
+    [price] => ₹200 / 250g
+    [image] => https://5.imimg.com/data5/US/HN/MY-54878788/raw-almonds-500x500.jpg
+    [quantity] => 1
+)
+
+ORDER DEBUG: subtotal=100, shipping=0, grandTotal=100
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=150, shipping=0, grandTotal=150
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=120, shipping=0, grandTotal=120
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=120, shipping=40, grandTotal=160
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=120, shipping=40, grandTotal=160
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=120, shipping=40, grandTotal=160
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+2025-07-25 18:19:55
+POST: Array
+(
+)
+
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=200, shipping=40, grandTotal=240
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=400, shipping=40, grandTotal=440
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=120, shipping=40, grandTotal=160
+PAYMENT.PHP: grand=600, shipping=0
+PAYMENT.PHP: grand=600, shipping=0
+PAYMENT.PHP: grand=600, shipping=0
+PAYMENT.PHP: grand=600, shipping=0
+DEBUG: _SESSION['shipping']=0, fallbackShipping=0
+ORDER DEBUG: subtotal=600, shipping=0, grandTotal=600
+PAYMENT.PHP: grand=150, shipping=40
+PAYMENT.PHP: grand=150, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=120, shipping=40, grandTotal=160
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=400, shipping=40, grandTotal=440
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+PAYMENT.PHP: grand=400, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=400, shipping=40, grandTotal=440
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=120, shipping=40, grandTotal=160
+PAYMENT.PHP: grand=50, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=50, shipping=40, grandTotal=90
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+PAYMENT.PHP: grand=200, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=200, shipping=40, grandTotal=240
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=100, shipping=40
+PAYMENT.PHP: grand=120, shipping=40
+PAYMENT.PHP: grand=60, shipping=40
+PAYMENT.PHP: grand=60, shipping=40
+PAYMENT.PHP: grand=60, shipping=40
+PAYMENT.PHP: grand=50, shipping=40
+DEBUG: _SESSION['shipping']=0, fallbackShipping=40
+ORDER DEBUG: subtotal=50, shipping=40, grandTotal=90

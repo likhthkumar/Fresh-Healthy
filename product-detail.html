@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Fresh & Healthy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-detail {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Responsive Design for Product Detail */
+        @media (max-width: 1024px) {
+            .product-detail {
+                max-width: 95%;
+                margin: 1.5rem auto;
+            }
+            
+            .product-container {
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            
+            .main-image {
+                height: 350px;
+            }
+            
+            .product-info h1 {
+                font-size: 1.8rem;
+            }
+            
+            .product-price {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-detail {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+            
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+                border-radius: 12px;
+            }
+            
+            .main-image {
+                height: 300px;
+            }
+            
+            .thumbnail-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .thumbnail {
+                height: 60px;
+            }
+            
+            .product-info {
+                padding: 0.5rem;
+            }
+            
+            .product-info h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .product-price {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .product-description {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .quantity-selector {
+                justify-content: center;
+                gap: 0.8rem;
+            }
+            
+            .quantity-btn {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .quantity-display {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-detail {
+                margin: 0.5rem auto;
+                padding: 0 0.3rem;
+            }
+            
+            .product-container {
+                padding: 0.8rem;
+                border-radius: 8px;
+            }
+            
+            .main-image {
+                height: 250px;
+            }
+            
+            .thumbnail {
+                height: 50px;
+            }
+            
+            .product-info h1 {
+                font-size: 1.3rem;
+                margin-bottom: 0.6rem;
+            }
+            
+            .product-price {
+                font-size: 1.1rem;
+                margin-bottom: 0.6rem;
+            }
+            
+            .product-description {
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+            
+            .quantity-btn {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .quantity-display {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        .product-images {
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-info h1 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 0.5rem;
+        }
+
+        .product-features {
+            margin-top: 2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-list i {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 300px;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .size-options {
+            margin: 1rem 0;
+        }
+
+        .size-options h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .size-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .size-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .size-btn:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .size-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo">
+                <a href="home_page.html" style="text-decoration:none; color:inherit;"><h1>Fresh & Healthy</h1></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-actions">
+                <a href="wishlist.html" class="action-btn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </a>
+                <a href="cart.html" class="action-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <a href="#profile" class="action-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="home_page.html">Home</a></li>
+                <li><a href="fruits.html">Fruits</a></li>
+                <li><a href="dry-fruits.html">Dry Fruits</a></li>
+                <li><a href="fruit-drinks.html">Fruit Drinks</a></li>
+                <li><a href="#special-offers">Special Offers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-detail">
+      <button class="back-btn-pro" onclick="window.history.back()" title="Go Back" style="display: inline-flex; align-items: center; gap: 0.5em; background: #2e7d32; color: #fff; border: none; border-radius: 7px; font-size: 1.08rem; font-weight: 600; padding: 0.6rem 1.5rem 0.6rem 1.1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(44,62,80,0.08); cursor: pointer; transition: background 0.18s, color 0.18s; outline: none;"><i class="fas fa-arrow-left"></i> Back</button>
+        <div class="product-container">
+            <div class="product-images">
+                <img src="" alt="" class="main-image" id="mainImage">
+                <div class="thumbnail-grid" id="thumbnailGrid">
+                    <!-- Thumbnails will be added dynamically -->
+                </div>
+            </div>
+            <div class="product-info">
+                <h1 id="productName"></h1>
+                <div class="size-options" id="sizeOptionsContainer">
+                    <!-- Size buttons will be generated dynamically -->
+                </div>
+                <p class="product-price" id="productPrice"></p>
+                <p class="product-description" id="productDescription"></p>
+                <div class="quantity-selector">
+                    <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                    <input type="number" class="quantity-input" id="quantity" value="1" min="1">
+                    <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    <button class="buy-now" onclick="buyNow()">Buy Now</button>
+                </div>
+                <div class="product-features">
+                    <h3>Product Features</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Fresh and Natural</li>
+                        <li><i class="fas fa-check"></i> Premium Quality</li>
+                        <li><i class="fas fa-check"></i> Rich in Nutrients</li>
+                        <li><i class="fas fa-check"></i> No Artificial Additives</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Fresh & Healthy is your trusted source for premium quality products.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Returns & Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:freshhealthy999@gmail.com">freshhealthy999@gmail.com</a></p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Fresh & Healthy. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get product details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const productName = urlParams.get('name');
+        const productPrice = urlParams.get('price');
+        const productImage = urlParams.get('image');
+
+        // Update product details on the page
+        document.getElementById('productName').textContent = productName;
+        document.getElementById('mainImage').src = productImage;
+        document.getElementById('mainImage').alt = productName;
+
+        // Add product description
+        document.getElementById('productDescription').textContent = 
+            `Enjoy the finest quality ${productName.toLowerCase()} with our premium selection. ` +
+            `Each product is carefully selected and packaged to ensure maximum freshness and quality.`;
+
+        // Set initial price
+        document.getElementById('productPrice').textContent = productPrice;
+
+        // Size and price options for each type
+        const sizeOptions = {
+            drink: [
+                { label: '300ml', price: '₹60' },
+                { label: '500ml', price: '₹90' },
+                { label: '1L', price: '₹150' }
+            ],
+            fruit: [
+                { label: '250g', price: '₹120' },
+                { label: '500g', price: '₹220' },
+                { label: '1kg', price: '₹400' }
+            ]
+        };
+
+        // Determine product type
+        function getProductType(name) {
+            const lower = name.toLowerCase();
+            if (lower.includes('watermelon')) {
+                return 'fruit';
+            }
+            if (lower.includes('juice') || lower.includes('smoothie') || lower.includes('drink') || lower.includes('water')) {
+                return 'drink';
+            }
+            return 'fruit';
+        }
+
+        const productType = getProductType(productName);
+        const options = sizeOptions[productType];
+
+        // Generate size buttons
+        const sizeOptionsContainer = document.getElementById('sizeOptionsContainer');
+        sizeOptionsContainer.innerHTML = `
+            <h3>Select Size</h3>
+            <div class="size-buttons">
+                ${options.map((opt, i) => `
+                    <button class="size-btn${i === 0 ? ' active' : ''}" data-size="${opt.label}" data-price="${opt.price}">${opt.label}</button>
+                `).join('')}
+            </div>
+        `;
+
+        // Set initial price
+        const firstPrice = options[0].price;
+        document.getElementById('productPrice').textContent = firstPrice;
+
+        // Handle size selection
+        const sizeButtons = document.querySelectorAll('.size-btn');
+        sizeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                sizeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('productPrice').textContent = this.dataset.price;
+            });
+        });
+
+        // Function to handle quantity changes
+        function increaseQuantity() {
+            const input = document.getElementById('quantity');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('quantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        // Function to show guest modal
+        function showGuestModal() {
+            // Create modal HTML
+            const modalHTML = `
+                <div class="modal-overlay" id="guest-modal-overlay" style="
+                    display: flex;
+                    position: fixed;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    background: rgba(44,62,80,0.18);
+                    z-index: 1000;
+                    justify-content: center;
+                    align-items: center;
+                ">
+                    <div class="modal" style="
+                        background: #fff;
+                        border-radius: 18px;
+                        box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+                        padding: 2.2rem 2rem 1.5rem 2rem;
+                        max-width: 350px;
+                        width: 90vw;
+                        text-align: center;
+                        border: 2px solid #2e7d32;
+                        animation: popin 0.2s;
+                    ">
+                        <h3 style="
+                            margin: 0 0 1.2rem 0;
+                            font-size: 1.25rem;
+                            color: #2e7d32;
+                            font-weight: 700;
+                        ">Please log in or register to continue.</h3>
+                        <div class="modal-btns" style="
+                            margin-top: 1.5rem;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.7rem;
+                        ">
+                            <a href="login.html" class="btn-primary" style="
+                                background: #2e7d32;
+                                color: #fff;
+                                border: none;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                text-decoration: none;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                                text-align: center;
+                            ">Login</a>
+                            <a href="register.html" class="btn-secondary" style="
+                                background: #e0e0e0;
+                                color: #2e7d32;
+                                border: 1px solid #2e7d32;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                text-decoration: none;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                                text-align: center;
+                            ">Register</a>
+                            <button class="btn-cancel" onclick="closeGuestModal()" style="
+                                background: #f5f5f5;
+                                color: #666;
+                                border: 1px solid #ddd;
+                                border-radius: 22px;
+                                padding: 0.7rem 0;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                cursor: pointer;
+                                transition: background 0.2s;
+                                box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+                            ">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal to page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Add hover effects
+            const modal = document.getElementById('guest-modal-overlay');
+            const btnPrimary = modal.querySelector('.btn-primary');
+            const btnSecondary = modal.querySelector('.btn-secondary');
+            const btnCancel = modal.querySelector('.btn-cancel');
+            
+            btnPrimary.addEventListener('mouseenter', () => btnPrimary.style.background = '#1b5e20');
+            btnPrimary.addEventListener('mouseleave', () => btnPrimary.style.background = '#2e7d32');
+            btnSecondary.addEventListener('mouseenter', () => btnSecondary.style.background = '#c8e6c9');
+            btnSecondary.addEventListener('mouseleave', () => btnSecondary.style.background = '#e0e0e0');
+            btnCancel.addEventListener('mouseenter', () => btnCancel.style.background = '#e0e0e0');
+            btnCancel.addEventListener('mouseleave', () => btnCancel.style.background = '#f5f5f5');
+        }
+
+        // Function to close guest modal
+        function closeGuestModal() {
+            const modal = document.getElementById('guest-modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function getCartKey() {
+            const userId = localStorage.getItem('currentUserId');
+            return userId ? `cartItems_${userId}` : 'cartItems_guest';
+        }
+
+        // Function to add to cart
+        function addToCart() {
+            if (localStorage.getItem('isGuest') === '1') {
+                showGuestModal();
+                return;
+            }
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const selectedSize = document.querySelector('.size-btn.active').dataset.size;
+            const selectedPrice = document.querySelector('.size-btn.active').dataset.price;
+            let cartItems = JSON.parse(localStorage.getItem(getCartKey())) || [];
+            const itemName = `${productName} (${selectedSize})`;
+            const existingItem = cartItems.find(item => item.name === itemName);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                // Extract price and unit
+                const priceMatch = selectedPrice.match(/[0-9]+(?:\.[0-9]+)?/);
+                const price = priceMatch ? parseFloat(priceMatch[0]) : 0;
+                const unitMatch = selectedPrice.match(/([0-9]+\s*\w+)$/);
+                const unit = unitMatch ? unitMatch[1] : "";
+                cartItems.push({
+                    name: itemName,
+                    price: price,
+                    unit: unit,
+                    image: productImage,
+                    quantity: quantity
+                });
+            }
+            localStorage.setItem(getCartKey(), JSON.stringify(cartItems));
+            updateBadges();
+            showNotification('Added to cart successfully!');
+        }
+
+        // Function to buy now
+        function buyNow() {
+            if (localStorage.getItem('isGuest') === '1') {
+                showGuestModal();
+                return;
+            }
+            
+            addToCart();
+            window.location.href = 'cart.html';
+        }
+
+        // Function to show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Function to update badges
+        function updateBadges() {
+            const cartItems = JSON.parse(localStorage.getItem(getCartKey())) || [];
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            
+            const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+            const wishlistCount = wishlist.length;
+            
+            document.getElementById('cartBadge').textContent = cartCount;
+            document.getElementById('wishlistBadge').textContent = wishlistCount;
+        }
+
+        // Initialize badges
+        updateBadges();
+    </script>
+</body>
+</html> 

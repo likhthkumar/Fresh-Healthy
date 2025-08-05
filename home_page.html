@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fresh & Healthy - Premium Fruits & Dry Fruits</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <script>
+    // Show one-time login success popup (centered, larger, professional style)
+    if (localStorage.getItem('loginSuccess') === '1') {
+        localStorage.removeItem('loginSuccess');
+        const popup = document.createElement('div');
+        popup.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 1.2rem;">
+                <span style="display: flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; background: #e8f5e9; border-radius: 50%; box-shadow: 0 2px 12px rgba(67,160,71,0.10);">
+                    <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="27" cy="27" r="27" fill="#43a047"/>
+                        <path d="M16 29.5L25 38L39 22" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span style="font-size: 1.7rem; font-weight: 700; color: #2e7d32; letter-spacing: 0.5px;">Successfully Logged In</span>
+            </div>
+        `;
+        popup.style.position = 'fixed';
+        popup.style.top = '50%';
+        popup.style.left = '50%';
+        popup.style.transform = 'translate(-50%, -50%)';
+        popup.style.background = '#fff';
+        popup.style.border = '2.5px solid #43a047';
+        popup.style.boxShadow = '0 12px 48px rgba(44,62,80,0.18)';
+        popup.style.borderRadius = '2.7rem';
+        popup.style.padding = '2.2rem 3.5rem 2.2rem 3.5rem';
+        popup.style.zIndex = '9999';
+        popup.style.opacity = '0';
+        popup.style.pointerEvents = 'none';
+        popup.style.transition = 'opacity 0.5s, top 0.5s';
+        document.body.appendChild(popup);
+        setTimeout(() => {
+            popup.style.opacity = '1';
+        }, 50);
+        setTimeout(() => {
+            popup.style.opacity = '0';
+        }, 2500);
+        setTimeout(() => { popup.remove(); }, 3000);
+    }
+    </script>
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo">
+                <a href="home_page.html" style="text-decoration:none; color:inherit;"><h1>Fresh & Healthy</h1></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="productSearch" placeholder="Search for fruits, dry fruits..." autocomplete="off">
+                <button><i class="fas fa-search"></i></button>
+                <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
+            </div>
+            <div class="header-actions">
+                <a href="wishlist.html" class="action-btn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </a>
+                <a href="cart.html" class="action-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </a>
+                <div class="profile-dropdown">
+                    <a href="#profile" class="action-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu" id="profileDropdownMenu">
+                        <a href="my_orders.php" class="dropdown-item">
+                            <i class="fas fa-box"></i>
+                            <span>My Orders</span>
+                        </a>
+                        <a href="edited_profile.php" class="dropdown-item">
+                            <i class="fas fa-user-edit"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="saved_addresses.php" class="dropdown-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Saved Addresses</span>
+                        </a>
+                        <a href="wishlist.html" class="dropdown-item">
+                            <i class="fas fa-heart"></i>
+                            <span>Wishlist</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="logout.php" class="dropdown-item" id="logoutDropdownItem">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="home_page.html" class="active">Home</a></li>
+                <li><a href="fruits.html">Fruits</a></li>
+                <li><a href="dry-fruits.html">Dry Fruits</a></li>
+                <li><a href="fruit-drinks.html">Fruit Drinks</a></li>
+                <li><a href="#special-offers">Special Offers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #66bb6a;
+            --primary-dark: #1b5e20;
+            --accent-color: #ffa726;
+            --accent-dark: #f57c00;
+            --text-primary: #2c3e50;
+            --text-secondary: #546e7a;
+            --background: linear-gradient(135deg, #f8faf9 0%, #e8f5e9 100%);
+            --card-background: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .action-btn {
+            position: relative;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transition-base);
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .carousel {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .categories-section, .features-section {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-top: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 9997;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition-base);
+        }
+
+        .suggestion-item:hover {
+            background: var(--background);
+        }
+
+        .suggestion-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .suggestion-info {
+            flex: 1;
+        }
+
+        .suggestion-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .suggestion-category {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .suggestion-price {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0;
+            min-width: 200px;
+            display: none;
+            z-index: 9998;
+        }
+
+        .profile-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+
+        .dropdown-item:hover {
+            background: var(--background);
+            color: var(--primary-color);
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 0.5rem 0;
+        }
+
+        /* Enhanced Hero Section */
+        .hero-section {
+            position: relative;
+            height: 80vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition-base);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+
+        /* Enhanced Categories Section */
+        .categories-section {
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-base);
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-base);
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.1);
+        }
+
+        .category-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+        }
+
+        .category-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .category-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .category-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: auto;
+            justify-content: center;
+            width: 100%;
+            font-size: 1.1rem;
+            line-height: 1.2;
+        }
+        .category-link i {
+            font-size: 1.1em;
+            vertical-align: middle;
+            position: relative;
+            top: 1px;
+        }
+
+        .category-card:hover .category-link i {
+            transform: translateX(5px);
+        }
+
+        /* Enhanced Features Section */
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            transition: var(--transition-base);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popin {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Landing Section Styles */
+        .landing-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8faf9 0%, #e8f5e9 100%);
+        }
+
+        .landing-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .landing-text h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-base);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .benefit-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Featured Products Styles */
+        .featured-products {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-base);
+        }
+
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .featured-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .featured-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+        }
+
+        .featured-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: var(--transition-base);
+        }
+
+        .featured-link:hover {
+            background: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        /* Special Offers Styles */
+        .special-offers {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f8faf9 100%);
+        }
+
+        .offer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .offer-content h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+        }
+
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .offer-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-base);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .offer-card h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--text-primary);
+        }
+
+        .offer-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .offer-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: var(--transition-base);
+        }
+
+        .offer-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .benefits-grid,
+            .featured-grid,
+            .offer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .landing-text h2,
+            .offer-content h2 {
+                font-size: 2rem;
+            }
+        }
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            z-index: 2000;
+            margin-top: 4px;
+            max-height: 260px;
+            overflow-y: auto;
+            display: none;
+        }
+        .autocomplete-item {
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            font-size: 1.05rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.18s, color 0.18s;
+        }
+        .autocomplete-item img {
+            width: 38px;
+            height: 38px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            background: #f5f7f6;
+        }
+        .autocomplete-item.active, .autocomplete-item:hover {
+            background: #e6f4ea;
+            color: #2e7d32;
+        }
+        .autocomplete-no-results {
+            padding: 1rem 1.2rem;
+            color: #bdbdbd;
+            font-size: 1.05rem;
+        }
+        .search-bar {
+            position: relative;
+        }
+    </style>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">Fresh & Healthy Living</h2>
+                <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">Discover nature's finest selection of premium fruits and dry fruits, delivered fresh to your doorstep. Experience the perfect blend of taste, nutrition, and convenience.</p>
+                <a href="#categories-section" class="cta-button" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">Shop Now</a>
+            </div>
+        </section>
+
+        <!-- New Landing Section -->
+        <section class="landing-section">
+            <div class="landing-content">
+                <div class="landing-text" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Why Choose Fresh & Healthy?</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                            <i class="fas fa-leaf"></i>
+                            <h3>100% Natural</h3>
+                            <p>All our products are sourced from organic farms and natural sources.</p>
+                        </div>
+                        <div class="benefit-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                            <i class="fas fa-truck"></i>
+                            <h3>Fast Delivery</h3>
+                            <p>Get your fresh produce delivered within 48 hours of ordering.</p>
+                        </div>
+                        <div class="benefit-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                            <i class="fas fa-medal"></i>
+                            <h3>Premium Quality</h3>
+                            <p>We maintain the highest standards in quality and freshness.</p>
+                        </div>
+                        <div class="benefit-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                            <i class="fas fa-heart"></i>
+                            <h3>Health First</h3>
+                            <p>Every product is selected for its nutritional value and health benefits.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section class="featured-products">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Featured Products</h2>
+                <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">Discover our most popular and trending items</p>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <img src="https://media.post.rvohealth.io/wp-content/uploads/2020/09/Do_Apples_Affect_Diabetes_and_Blood_Sugar_Levels-732x549-thumbnail-1-732x549.jpg" alt="Fresh Apple">
+                    <div class="featured-info">
+                        <h3>Fresh Apple</h3>
+                        <p>Premium quality apples, rich in antioxidants</p>
+                        <a href="fruits.html" class="featured-link">Shop Now</a>
+                    </div>
+                </div>
+                <div class="featured-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <img src="https://5.imimg.com/data5/US/HN/MY-54878788/raw-almonds-500x500.jpg" alt="Premium Almonds">
+                    <div class="featured-info">
+                        <h3>Premium Almonds</h3>
+                        <p>Hand-picked, premium quality almonds</p>
+                        <a href="dry-fruits.html" class="featured-link">Shop Now</a>
+                    </div>
+                </div>
+                <div class="featured-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <img src="https://www.mygingergarlickitchen.com/wp-content/rich-markup-images/1x1/1x1-strawberry-juice.jpg" alt="Strawberry Smoothie">
+                    <div class="featured-info">
+                        <h3>Strawberry Smoothie</h3>
+                        <p>Fresh and delicious fruit smoothies</p>
+                        <a href="fruit-drinks.html" class="featured-link">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Offers Section -->
+        <section class="special-offers">
+            <div class="offer-content" data-aos="fade-up" data-aos-duration="1000">
+                <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Special Offers</h2>
+                <div class="offer-grid">
+                    <div class="offer-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                        <div class="offer-badge">20% OFF</div>
+                        <h3>Coupon Code: FRESH20</h3>
+                        <p>Get 20% off on your first order</p>
+                        <a href="fruits.html" class="offer-button">Shop Now</a>
+                    </div>
+                    <div class="offer-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                        <div class="offer-badge">Free Delivery</div>
+                        <h3>Orders Over ₹499</h3>
+                        <p>Free delivery on orders above ₹499</p>
+                        <a href="dry-fruits.html" class="offer-button">Shop Now</a>
+                    </div>
+                    <div class="offer-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                        <div class="offer-badge">Delivery</div>
+                        <h3>Delivery within 48 hours</h3>
+                        <p>Exchange/ Return within 24 hours</p>
+                        <a href="fruits.html" class="offer-button">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section" id="categories-section">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+                <h2 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Shop by Category</h2>
+                <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">Explore our wide range of fresh and healthy products</p>
+            </div>
+            <div class="categories-grid">
+                <a href="fruits.html" class="category-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="category-image">
+                        <img src="https://media.istockphoto.com/id/529664572/photo/fruit-background.jpg?s=612x612&w=0&k=20&c=K7V0rVCGj8tvluXDqxJgu0AdMKF8axP0A15P-8Ksh3I=" alt="Fresh Fruits">
+                    </div>
+                    <div class="category-info">
+                        <h3>Fresh Fruits</h3>
+                        <p>Discover our selection of fresh, seasonal fruits</p>
+                        <span class="category-link">Shop Now <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <a href="dry-fruits.html" class="category-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="category-image">
+                        <img src="https://nutribinge.in/cdn/shop/articles/seeds_dry_fruits_nuts.webp?v=1713264895" alt="Dry Fruits">
+                    </div>
+                    <div class="category-info">
+                        <h3>Dry Fruits</h3>
+                        <p>Premium quality nuts and dried fruits</p>
+                        <span class="category-link">Shop Now <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <a href="fruit-drinks.html" class="category-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="category-image">
+                        <img src="https://www.thedailymeal.com/img/gallery/a-food-processor-is-the-chef-approved-way-to-juice-fruit-in-a-flash/l-intro-1681303146.jpg" alt="Fruit Drinks">
+                    </div>
+                    <div class="category-info">
+                        <h3>Fruit Drinks</h3>
+                        <p>Refreshing and healthy fruit beverages</p>
+                        <span class="category-link">Shop Now <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <i class="fas fa-truck"></i>
+                <h3>Free Shipping</h3>
+                <p>On orders over ₹499</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <i class="fas fa-undo"></i>
+                <h3>Easy Returns</h3>
+                <p>1-day return policy</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure Payment</h3>
+                <p>100% secure checkout</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <h3>About Us</h3>
+                <p>Fresh & Healthy is your trusted source for premium quality fruits and dry fruits.</p>
+            </div>
+            <div class="footer-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Returns & Refunds</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:freshhealthy999@gmail.com">freshhealthy999@gmail.com</a></p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+            <p>&copy; 2024 Fresh & Healthy. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function getCartKey() {
+            const userId = localStorage.getItem('currentUserId');
+            return userId ? `cartItems_${userId}` : 'cartItems_guest';
+        }
+
+        function updateBadges() {
+            const cartItems = JSON.parse(localStorage.getItem(getCartKey())) || [];
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+            const wishlistCount = wishlist.length;
+            document.getElementById('cartBadge').textContent = cartCount;
+            document.getElementById('wishlistBadge').textContent = wishlistCount;
+        }
+
+        // Initialize badges
+        updateBadges();
+
+        // Set guest flag and clear cart/wishlist if coming from Skip Now
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('skip') === '1') {
+            localStorage.setItem('isGuest', '1');
+            localStorage.setItem(getCartKey(), '[]');
+            localStorage.setItem('wishlist', '[]');
+        }
+
+        // Update: Track which action triggered the modal
+        let loginModalContext = 'orders'; // default
+
+        // Update event listeners to set context
+        // My Orders
+        const myOrdersLink = document.querySelector('a[href="my_orders.php"]');
+        if (myOrdersLink) {
+            myOrdersLink.addEventListener('click', function(e) {
+                if (localStorage.getItem('isGuest') === '1') {
+                    e.preventDefault();
+                    loginModalContext = 'orders';
+                    showLoginModal();
+                }
+            });
+        }
+        // Edit Profile
+        const editProfileLink = document.querySelector('a[href="edited_profile.php"]');
+        if (editProfileLink) {
+            editProfileLink.addEventListener('click', function(e) {
+                if (localStorage.getItem('isGuest') === '1') {
+                    e.preventDefault();
+                    loginModalContext = 'edited_profile';
+                    showLoginModal();
+                }
+            });
+        }
+
+        // Function to show login modal
+        function showLoginModal() {
+            if (window.isAuthModalOpen) return;
+            window.isAuthModalOpen = true;
+            // Add modal styles if not already present
+            if (!document.getElementById('custom-login-modal-style')) {
+                const style = document.createElement('style');
+                style.id = 'custom-login-modal-style';
+                style.textContent = `
+        .custom-modal-overlay {
+            display: flex;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44,62,80,0.18);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .custom-modal {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+            padding: 2.2rem 2rem 1.5rem 2rem;
+            max-width: 350px;
+            width: 90vw;
+            text-align: center;
+            border: 2px solid #2e7d32;
+            animation: popin 0.2s;
+        }
+        .custom-modal h3 {
+            margin: 0 0 1.2rem 0;
+            font-size: 1.25rem;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+        .custom-modal-btns {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .custom-modal-btn {
+            border: none;
+            border-radius: 30px;
+            padding: 0.9rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, border 0.18s;
+            text-decoration: none;
+            outline: none;
+        }
+        .custom-modal-btn.login {
+            background: #2e7d32;
+            color: #fff;
+        }
+        .custom-modal-btn.login:hover {
+            background: #1b5e20;
+        }
+        .custom-modal-btn.register {
+            background: #fff;
+            color: #2e7d32;
+            border: 2px solid #2e7d32;
+        }
+        .custom-modal-btn.register:hover {
+            background: #e6f4ea;
+        }
+        .custom-modal-btn.cancel {
+            background: #f5f5f5;
+            color: #888;
+        }
+        .custom-modal-btn.cancel:hover {
+            background: #e0e0e0;
+        }
+        `;
+                document.head.appendChild(style);
+            }
+            // Set modal message (always the same)
+            let modalMsg = 'Please Login/ Register to Continue.';
+            // Create modal HTML
+            const modalHTML = `
+        <div class="custom-modal-overlay" id="login-modal-overlay">
+            <div class="custom-modal">
+                <h3>${modalMsg}</h3>
+                <div class="custom-modal-btns">
+                    <a href="login.html" class="custom-modal-btn login">Login</a>
+                    <a href="register.html" class="custom-modal-btn register">Register</a>
+                    <button class="custom-modal-btn cancel" onclick="closeLoginModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    `;
+            // Add modal to page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+
+        // Function to close login modal
+        function closeLoginModal() {
+            window.isAuthModalOpen = false;
+            const modal = document.getElementById('login-modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        // --- GLOBAL AUTOCOMPLETE SEARCH ---
+        const searchInput = document.getElementById('productSearch');
+        const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+        let searchResults = [];
+        let activeIndex = -1;
+        // All products from all categories
+        const allProducts = [
+            // Fruits
+            { name: 'Fresh Apple', price: '₹50 / 250g', image: 'https://media.post.rvohealth.io/wp-content/uploads/2020/09/Do_Apples_Affect_Diabetes_and_Blood_Sugar_Levels-732x549-thumbnail-1-732x549.jpg', page: 'fruits.html' },
+            { name: 'Fresh Banana', price: '₹50 / 250g', image: 'https://www.bigbasket.com/media/uploads/p/xxl/10000027_32-fresho-banana-robusta.jpg', page: 'fruits.html' },
+            { name: 'Fresh Orange', price: '₹50 / 250g', image: 'https://www.allrecipes.com/thmb/y_uvjwXWAuD6T0RxaS19jFvZyFU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205638014-2000-d0fbf9170f2d43eeb046f56eec65319c.jpg', page: 'fruits.html' },
+            { name: 'Fresh Grapes', price: '₹50 / 250g', image: 'https://www.perfection.com.au/hubfs/Produce%20Close%20up%20or%20Styled/grapes-banner.jpg', page: 'fruits.html' },
+            { name: 'Fresh Mango', price: '₹50 / 250g', image: 'https://cdn5.dravinashtank.in/wp-content/uploads/2023/06/Mango.png', page: 'fruits.html' },
+            { name: 'Fresh Strawberry', price: '₹50 / 250g', image: 'https://images.unsplash.com/photo-1518635017498-87f514b751ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruits.html' },
+            { name: 'Fresh Pineapple', price: '₹50 / 250g', image: 'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruits.html' },
+            { name: 'Fresh Watermelon', price: '₹50 / 250g', image: 'https://hips.hearstapps.com/hmg-prod/images/fresh-ripe-watermelon-slices-on-wooden-table-royalty-free-image-1684966820.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*', page: 'fruits.html' },
+            { name: 'Fresh Kiwi', price: '₹50 / 250g', image: 'https://www.sakraworldhospital.com/assets/spl_splimgs/benefits-kiwi-of-fruit.webp', page: 'fruits.html' },
+            { name: 'Fresh Pomegranate', price: '₹50 / 250g', image: 'https://media6.ppl-media.com/mediafiles/blogs/pomegranate_78d63b59c0.webp', page: 'fruits.html' },
+            { name: 'Fresh Papaya', price: '₹50 / 250g', image: 'https://eureka-farms.com/cdn/shop/files/FullSizeRender.jpg?v=1725594434&width=1500', page: 'fruits.html' },
+            { name: 'Fresh Dragon Fruit', price: '₹50 / 250g', image: 'https://images.everydayhealth.com/images/diet-nutrition/dragon-fruit-101-1440x810.jpg?sfvrsn=3bd52a80_3', page: 'fruits.html' },
+            // Dry Fruits
+            { name: 'Premium Almonds', price: '₹200 / 250g', image: 'https://5.imimg.com/data5/US/HN/MY-54878788/raw-almonds-500x500.jpg', page: 'dry-fruits.html' },
+            { name: 'Walnuts', price: '₹200 / 250g', image: 'https://mdpiblog.wordpress.sciforum.net/wp-content/uploads/sites/4/2023/01/walnuts.jpg', page: 'dry-fruits.html' },
+            { name: 'Cashews', price: '₹200 / 250g', image: 'https://assets.clevelandclinic.org/transform/ec440b31-4766-4167-81b5-fb4eece02c16/cashews-511301902', page: 'dry-fruits.html' },
+            { name: 'Pistachios', price: '₹200 / 250g', image: 'https://vanduspices.in/wp-content/uploads/2022/05/new-1000x1000-38.png', page: 'dry-fruits.html' },
+            { name: 'Raisins', price: '₹200 / 250g', image: 'https://d8kcpnmmec91a.cloudfront.net/products/rai/GoldenRaisinsGradeA/29.%20Raisins-3.jpg', page: 'dry-fruits.html' },
+            { name: 'Dried Apricots', price: '₹200 / 250g', image: 'https://www.giacovelli.it/wp-content/uploads/2023/07/dried-apricots-full-frame-2022-11-15-15-04-06-utc-scaled-e1690968549545.jpg', page: 'dry-fruits.html' },
+            { name: 'Dates', price: '₹200 / 250g', image: 'https://i.natgeofe.com/n/660afe7e-ef6c-42b8-938c-f6d5d21059a5/NationalGeographic_1365653.jpg', page: 'dry-fruits.html' },
+            { name: 'Dried Figs', price: '₹200 / 250g', image: 'https://dagabrothers.in/wp-content/uploads/2021/02/Webp.net-resizeimage-4.jpg', page: 'dry-fruits.html' },
+            { name: 'Prunes', price: '₹200 / 250g', image: 'https://www.forksoverknives.com/uploads/2024/09/dried-plums-prunes.jpg?format=webp&optimize=high&precrop=16%3A9%2Csmart', page: 'dry-fruits.html' },
+            { name: 'Dried Cranberries', price: '₹200 / 250g', image: 'https://www.fruits365.shop/cdn/shop/products/cranberry.jpg?v=1636776848', page: 'dry-fruits.html' },
+            { name: 'Dried Blueberries', price: '₹200 / 250g', image: 'https://royalkashmir.in/wp-content/uploads/2023/05/Blck-Barries.jpg', page: 'dry-fruits.html' },
+            { name: 'Mixed Dry Fruits', price: '₹200 / 250g', image: 'https://indianafoods.in/wp-content/uploads/2020/02/imm.png', page: 'dry-fruits.html' },
+            // Fruit Drinks
+            { name: 'Fresh Orange Juice', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-16134782237194052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+            { name: 'Berry Smoothie', price: '₹180 / bottle', image: 'https://www.dinneratthezoo.com/wp-content/uploads/2018/05/blueberry-smoothie-5.jpg', page: 'fruit-drinks.html' },
+            { name: 'Fresh Lemon Juice', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-1613478223719-4052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+            { name: 'Mango Smoothie', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-1613478223719-4052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+            { name: 'Watermelon Juice', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-1613478223719-4052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+            { name: 'Pineapple Juice', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-1613478223719-4052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+            { name: 'Pomegranate Juice', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-1613478223719-4052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+            { name: 'Green Apple Juice', price: '₹60 / 300ml', image: 'https://www.cuisinart.com/dw/image/v2/ABAF_PRD/on/demandware.static/-/Sites-us-cuisinart-sfra-Library/default/dwd4621e02/images/recipe-Images/green-apple-juice.jpg?sw=1200&sh=1200&sm=fit', page: 'fruit-drinks.html' },
+            { name: 'Mixed Fruit Juice', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-1613478223719-4052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+            { name: 'Strawberry Smoothie', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-1613478223719-4052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+            { name: 'Coconut Water', price: '₹60 / 300ml', image: 'https://tasteofrecipes.com/wp-content/uploads/2023/05/AdobeStock_203678537-scaled.jpeg', page: 'fruit-drinks.html' },
+            { name: 'Grape Juice', price: '₹60 / 300ml', image: 'https://images.unsplash.com/photo-1613478223719-4052c0c2b4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80', page: 'fruit-drinks.html' },
+        ];
+        // Render dropdown
+        function renderAutocomplete(results) {
+            if (!searchInput.value.trim()) {
+                autocompleteDropdown.style.display = 'none';
+                return;
+            }
+            if (results.length === 0) {
+                autocompleteDropdown.innerHTML = '<div class="autocomplete-no-results">No results found</div>';
+                autocompleteDropdown.style.display = 'block';
+                return;
+            }
+            autocompleteDropdown.innerHTML = results.map((item, i) => `
+                <div class="autocomplete-item${i === activeIndex ? ' active' : ''}" data-index="${i}">
+                    <img src="${item.image}" alt="${item.name}">
+                    <span>${item.name}</span>
+                    <span style="margin-left:auto;color:#388e3c;font-weight:500;">${item.price}</span>
+                    <span style="margin-left:1.2rem;font-size:0.95rem;color:#888;">${item.page.replace('.html','').replace('-',' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
+                </div>
+            `).join('');
+            autocompleteDropdown.style.display = 'block';
+        }
+        // Filter products
+        function filterProducts(query) {
+            return allProducts.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+        }
+        // Handle input
+        searchInput.addEventListener('input', function() {
+            const val = this.value.trim();
+            if (!val) {
+                autocompleteDropdown.style.display = 'none';
+                return;
+            }
+            searchResults = filterProducts(val);
+            activeIndex = -1;
+            renderAutocomplete(searchResults);
+        });
+        // Handle keyboard navigation
+        searchInput.addEventListener('keydown', function(e) {
+            if (autocompleteDropdown.style.display !== 'block') return;
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                activeIndex = (activeIndex + 1) % searchResults.length;
+                renderAutocomplete(searchResults);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                activeIndex = (activeIndex - 1 + searchResults.length) % searchResults.length;
+                renderAutocomplete(searchResults);
+            } else if (e.key === 'Enter') {
+                if (activeIndex >= 0 && searchResults[activeIndex]) {
+                    selectAutocomplete(searchResults[activeIndex]);
+                }
+            } else if (e.key === 'Escape') {
+                autocompleteDropdown.style.display = 'none';
+            }
+        });
+        // Handle mouse click
+        autocompleteDropdown.addEventListener('mousedown', function(e) {
+            const item = e.target.closest('.autocomplete-item');
+            if (item) {
+                const idx = parseInt(item.dataset.index, 10);
+                if (!isNaN(idx) && searchResults[idx]) {
+                    selectAutocomplete(searchResults[idx]);
+                }
+            }
+        });
+        // Select product
+        function selectAutocomplete(product) {
+            autocompleteDropdown.style.display = 'none';
+            searchInput.value = product.name;
+            // Navigate to the product's page and scroll to product (optional: pass name as anchor/query)
+            window.location.href = product.page + '?search=' + encodeURIComponent(product.name);
+        }
+        // Hide dropdown on outside click
+        document.addEventListener('mousedown', function(e) {
+            if (!autocompleteDropdown.contains(e.target) && e.target !== searchInput) {
+                autocompleteDropdown.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle Buy Now, Add to Cart, Wishlist for guest users
+            function handleGuestAction(selector) {
+                document.querySelectorAll(selector).forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        if (localStorage.getItem('isGuest') === '1') {
+                            e.preventDefault();
+                            showLoginModal();
+                        }
+                    });
+                });
+            }
+            // Adjust selectors as per your button classes/ids
+            handleGuestAction('.buy-now, .btn-buy-now');
+            handleGuestAction('.add-to-cart, .btn-add-to-cart');
+            handleGuestAction('.wishlist, .btn-wishlist, .add-to-wishlist');
+        });
+
+        // Replace Logout with Login for guest users
+        function updateProfileDropdownForGuest() {
+            if (localStorage.getItem('isGuest') === '1') {
+                var logoutItem = document.getElementById('logoutDropdownItem');
+                if (logoutItem) {
+                    var loginItem = document.createElement('a');
+                    loginItem.href = 'login.html';
+                    loginItem.className = 'dropdown-item';
+                    loginItem.innerHTML = '<i class="fas fa-sign-in-alt"></i> <span>Login</span>';
+                    logoutItem.parentNode.replaceChild(loginItem, logoutItem);
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateProfileDropdownForGuest);
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS with professional settings
+        AOS.init({
+            // Global settings
+            duration: 800,           // Duration of animation (in ms)
+            easing: 'ease-out-cubic', // Easing function
+            once: true,              // Whether animation should happen only once
+            mirror: false,           // Whether elements should animate out while scrolling past them
+            anchorPlacement: 'top-bottom', // Defines which position of the element regarding to window should trigger the animation
+            
+            // Offset settings
+            offset: 120,             // Offset (in px) from the original trigger point
+            
+            // Delay settings
+            delay: 0,                // Default delay before animation starts
+            
+            // Disable settings
+            disable: false,          // Disables AOS on mobile devices
+            disableMutationObserver: false, // Disables automatic mutations' detections
+            
+            // Advanced settings
+            startEvent: 'DOMContentLoaded', // Name of the event dispatched on the document
+            initClassName: 'aos-init',      // Class applied after initialization
+            animatedClassName: 'aos-animate', // Class applied on animation
+            useClassNames: false,           // If true, will add content of `data-aos` as classes on scroll
+            
+            // Performance settings
+            debounceDelay: 50,       // The delay on debounced function while scrolling
+            throttleDelay: 99,       // The delay on throttled function while scrolling
+            
+            // Responsive settings
+            responsive: {
+                0: {
+                    offset: 80,
+                    delay: 0
+                },
+                768: {
+                    offset: 120,
+                    delay: 0
+                },
+                1024: {
+                    offset: 150,
+                    delay: 0
+                }
+            }
+        });
+        
+        // Refresh AOS on dynamic content changes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Refresh AOS after any dynamic content is loaded
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
